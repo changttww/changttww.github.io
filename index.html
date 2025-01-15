@@ -91,7 +91,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 日记</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 遇到的问题</span></span><br><span class="line">试图跑起来一个队友写好的 WebSocket 项目，但是在 <span class="code">`import`</span> 那里一直报红，显示找不到依赖，明明我的 <span class="code">`pom.xml`</span> 文件中已经引入了相关依赖。</span><br><span class="line"></span><br><span class="line">尝试使用以下命令重新构建项目：</span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code">mvn clean</span></span><br><span class="line"><span class="code">mvn install</span></span><br></pre></td></tr></table></figure>
+        <h1 id="日记"><a href="#日记" class="headerlink" title="日记"></a>日记</h1><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>试图跑起来一个队友写好的 WebSocket 项目，但是在 <code>import</code> 那里一直报红，显示找不到依赖，明明我的 <code>pom.xml</code> 文件中已经引入了相关依赖。</p>
+<p>尝试使用以下命令重新构建项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn clean</span><br><span class="line">mvn install</span><br></pre></td></tr></table></figure>
 <p>结果直接报错了。</p>
 <h2 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h2><p>重新下载了 Maven，并重新配置了本地仓库，依然报错。我开始怀疑是 JDK 版本的问题。<br><img src="https://cdn-a.markji.com/files/67585f59517212d0a494e34e_hd.png?e=1736946528721&token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7JBy3eZnKOgl86ggC44VlN6vgW8=" alt="Hexo Logo"></p>
 <h2 id="进一步检查"><a href="#进一步检查" class="headerlink" title="进一步检查"></a>进一步检查</h2><p>检查了一下 JDK 的版本，发现我的配置崩溃了。这应该就是问题的根源。决定明天再解决这个问题。</p>
