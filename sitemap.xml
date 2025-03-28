@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://www.magicat.cc/life/games/index.html</loc>
+    <loc>https://www.magicat.cc/life/movies/index.html</loc>
     
     <lastmod>2025-03-25</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://www.magicat.cc/life/movies/index.html</loc>
+    <loc>https://www.magicat.cc/life/games/index.html</loc>
     
     <lastmod>2025-03-25</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://www.magicat.cc/box/nav/index.html</loc>
+    <loc>https://www.magicat.cc/box/gallery/index.html</loc>
     
     <lastmod>2025-03-25</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://www.magicat.cc/box/gallery/index.html</loc>
+    <loc>https://www.magicat.cc/box/nav/index.html</loc>
     
     <lastmod>2025-03-25</lastmod>
     
@@ -182,6 +182,20 @@
 
   
   <url>
+    <loc>https://www.magicat.cc/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2025-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.magicat.cc/tags/Socket/</loc>
+    <lastmod>2025-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.magicat.cc/tags/C/</loc>
     <lastmod>2025-03-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -202,21 +216,14 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://www.magicat.cc/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2025-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.magicat.cc/tags/Socket/</loc>
-    <lastmod>2025-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
+  
+  <url>
+    <loc>https://www.magicat.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2025-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://www.magicat.cc/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
@@ -227,13 +234,6 @@
   
   <url>
     <loc>https://www.magicat.cc/categories/%E6%BC%94%E7%A4%BA/</loc>
-    <lastmod>2025-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.magicat.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2025-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
