@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>类型转换与继承</title>
+      <link href="/posts/type-conversion-inheritance.html"/>
+      <url>/posts/type-conversion-inheritance.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="基类与派生类的类型转换">基类与派生类的类型转换</h2><p>可以将基类指针/引用绑定到派生类对象上。也就是可以把派生类对象当成基类对象使用（需要传基类对象的参数也可以传派生类对象），但不能将基类转换成派生类。</p><h2 id="静态类型与动态类型">静态类型与动态类型</h2><ul><li><strong>静态类型</strong>：变量或表达式在编译时确定的类型，由声明决定。代码写下时，编译器就能知道其静态类型。</li><li><strong>动态类型</strong>：变量或表达式在运行时所表示的对象的实际类型。只有当程序运行时，才知道变量指向的具体对象是什么。</li></ul><p>基类指针或引用可以指向派生类对象，此时，静态类型仍然是基类类型，动态类型则是运行时绑定的派生类类型。即该指针或引用只能访问基类的成员，其中非虚函数调用的是基类的版本，虚函数会动态绑定到派生类定义的版本。<br><img src="https://cdn-a.markji.com/files/67eb4702205d5713c0ce74ea_hd.png?e=1743524964854&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:vwFkjPk-l3HiRHflk6XZOw57uME=" alt=""></p><h2 id="对象赋值的特殊情况">对象赋值的特殊情况</h2><p>如果是直接将派生类对象赋值给基类，仅保留基类部分，派生类的成员被丢弃。之后，该对象的动态类型就变成了基类。<br><img src="https://cdn-a.markji.com/files/67eb464d205d5713c0ce5701_hd.png?e=1743524964854&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:ohIN6Rl1fDacWGV75YvGo6dYIZI=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 面向对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>可调用对象</title>
       <link href="/posts/bbed94b9.html"/>
       <url>/posts/bbed94b9.html</url>
