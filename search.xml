@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>post视频软解码流程1 open函数</title>
+      <link href="/posts/video-decoding-process.html"/>
+      <url>/posts/video-decoding-process.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="视频文件打开流程">视频文件打开流程</h2><p>先丢一个流程图<br><img src="https://cdn-a.markji.com/files/67f78cddeb2757808894e0e1_hd.png?e=1744301131161&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:s0q3evngz3sBOf5b2kXXODt_qq8=" alt=""></p><p>open函数，需要传入url，返回bool是否成功打开</p><p>在打开输入流之前先定义了参数字典，通过这个字典和传入的url打开输入流<br><img src="https://cdn-a.markji.com/files/67f78e1fc7682418c3f4421b_hd.png?e=1744301131161&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Dt1o-dsDVm9-XdUPUEw6a4Q9iyw=" alt=""></p><h2 id="解封装过程">解封装过程</h2><h3 id="解封装上下文-视频流">解封装上下文-&gt;视频流</h3><p>打开输入流，返回解封装上下文</p><p>通过解封装上下文读取媒体信息，顺带得到视频总时长</p><p>再通过解封装上下文和AVMEDIA_TYPE_VIDEO枚举视频流ID</p><p>就能在解封装上下文中根据视频流ID获取视频流</p><h2 id="解码过程">解码过程</h2><h3 id="视频流-解码器-解码器上下文-打开解码器">视频流-&gt;解码器-&gt;解码器上下文-&gt;打开解码器</h3><p>videoStream-&gt;codecpar 是一个 AVCodecParameters*，它保存了解封装后提取出的流的编解码参数，是解封装阶段从媒体中提取出来的参数集合</p><p>AVFormatContext（解封装）和 AVCodecContext（解码）是两个阶段，前面只是解封装了，但并没有解码</p><p>通过视频流里的codecpar参数集合找到视频分辨率（长和宽）和总帧率，</p><p>直接从视频流获取视频帧率，但涉及分数（AVRational）到小数（qreal）的转换<br><img src="https://cdn-a.markji.com/files/67f79832c7682418c3f5dd50_hd.png?e=1744301131161&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:ut8gL7ppfd-jSR-kFM4yeGCMT2w=" alt=""></p><h2 id="解码器配置">解码器配置</h2><p>再通过视频流里的codecpar参数集合中的codec-&gt;id 解码器ID获取视频解码器</p><p>通过解码器获取解码器上下文</p><p>然后使用视频流的codecpar为解码器上下文赋值，再使用赋值后的解码器上下文打开解码器</p><h2 id="内存分配">内存分配</h2><p>最后提前分配AVPacket数据包和AVFrame解码后的视频帧的空间</p><p>根据之前得到的图像分辨率，计算图像所需内存大小，然后按计算得到的大小分配图像数据空间</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 多媒体技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 音视频开发 </tag>
+            
+            <tag> FFmpeg </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>类型转换与继承</title>
       <link href="/posts/type-conversion-inheritance.html"/>
       <url>/posts/type-conversion-inheritance.html</url>
