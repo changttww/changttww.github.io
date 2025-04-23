@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.magicat.cc/posts/constructor-virtual-function.html</loc>
+    <lastmod>2025-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/class-scope-inheritance.html</loc>
+    <lastmod>2025-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/virtual-destructor-copy-control.html</loc>
+    <lastmod>2025-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/abstract-base-class.html</loc>
+    <lastmod>2025-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/type-conversion-virtual-function.html</loc>
+    <lastmod>2025-04-23</lastmod>
+  </url>
+  <url>
     <loc>https://www.magicat.cc/posts/video-decoding-process.html</loc>
     <lastmod>2025-04-12</lastmod>
   </url>

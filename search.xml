@@ -4,6 +4,141 @@
   
     
     <entry>
+      <title>构造函数中的虚函数与继承</title>
+      <link href="/posts/constructor-virtual-function.html"/>
+      <url>/posts/constructor-virtual-function.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="构造析构中的虚函数调用"><a href="#构造析构中的虚函数调用" class="headerlink" title="构造析构中的虚函数调用"></a>构造析构中的虚函数调用</h2><p>在构造和析构过程中，虚函数无法动态绑定到派生类的版本，只能绑定到基类的版本因为派生类的构造在基类之后，而析构又在基类之前，此时都处于未完成的状态。</p><h2 id="继承构造函数"><a href="#继承构造函数" class="headerlink" title="继承构造函数"></a>继承构造函数</h2><p>派生类可以重用其直接基类定义的构造函数，但不能继承默认、拷贝和移动构造。</p><p>通过using 基类名::基类构造函数来使用，编译器会调用基类的构造函数初始化基类部分，但不会继承构造函数的具体实现（即函数体内容不会被继承）。<br><img src="https://cdn-a.markji.com/files/6800f32575151df2bb69a644_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:S4uCS8guDfEPvnjKe4miK71hFys=" alt=""><br><img src="https://cdn-a.markji.com/files/6800f4cd75151df2bb69de06_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:DCJfkqaJkhZWLn-IvPrYuPylqTE=" alt=""></p><h2 id="默认参数的继承"><a href="#默认参数的继承" class="headerlink" title="默认参数的继承"></a>默认参数的继承</h2><p>当基类构造函数包含默认参数时，派生类并不会直接继承这些默认参数，而是会为派生类生成多个构造函数，每个构造函数省略了基类构造函数中一个带默认值的参数。</p><p>两种类型，一种直接去掉默认参数，一种将默认参数转换为默认值。<br><img src="https://cdn-a.markji.com/files/6800f80675151df2bb6a9773_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:9sBRyoKAO1e8NTYMoPOY-Y0GO9Y=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 面向对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>类作用域的继承</title>
+      <link href="/posts/class-scope-inheritance.html"/>
+      <url>/posts/class-scope-inheritance.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="作用域嵌套规则"><a href="#作用域嵌套规则" class="headerlink" title="作用域嵌套规则"></a>作用域嵌套规则</h2><p>派生类作用域嵌套在其基类的作用域之中，如果一个名字在派生类作用域无法解析，编译器会到外层基类作用域中寻找。</p><h2 id="名字查找与静态类型"><a href="#名字查找与静态类型" class="headerlink" title="名字查找与静态类型"></a>名字查找与静态类型</h2><p>之前写过基类的指针或引用可以传派生类，但此时这个指针依然只能调用基类成员，不能调用独属于传进来的派生类的成员，因为编译时会识别静态类型进行名字查找。</p><h2 id="名字隐藏"><a href="#名字隐藏" class="headerlink" title="名字隐藏"></a>名字隐藏</h2><p>派生类的成员将隐藏同名的基类成员，但可以通过作用域运算符显式调用隐藏的成员。</p><h2 id="覆盖重载函数"><a href="#覆盖重载函数" class="headerlink" title="覆盖重载函数"></a>覆盖重载函数</h2><p>派生类中只要出现和基类同名的函数，就会覆盖掉基类中该函数所有版本。</p><p>可以先用using把所有基类的重载搬过来，就能只覆盖自己想要覆盖的那个版本。<br><img src="https://cdn-a.markji.com/files/67f5c4c4a5d66136f3d79f3a_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:4TILibPUCQRPIFMsGGTNp1vKMuA=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 面向对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>虚析构函数与继承中的拷贝控制</title>
+      <link href="/posts/virtual-destructor-copy-control.html"/>
+      <url>/posts/virtual-destructor-copy-control.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="虚析构函数">虚析构函数</h2><p>如果一个类会作为基类使用，就必须把它的析构函数设为虚函数，否则通过基类指针删除派生类对象会是未定义行为。</p><p>只要一个类显式定义了析构函数（包括虚析构函数，即使是 =default），在这个类及其派生类中，编译器都不会自动生成移动构造函数和移动赋值运算符。</p><p>如果还想要移动操作，就要手动写出来或默认声明它们。</p><h2 id="合成拷贝控制与继承">合成拷贝控制与继承</h2><p>合成的拷贝控制函数会自动处理对象的创建、复制和销毁，先处理基类的成员，再处理派生类的成员。</p><p>如果基类的拷贝控制函数被删除或不可访问，派生类的相关拷贝控制函数也会被删除。</p><p>如果基类没有移动构造函数，派生类也不能默认有移动构造函数。如果派生类想要支持拷贝或移动操作，它必须自己实现这些操作，并且处理好基类部分的拷贝或移动。</p><h2 id="派生类的拷贝控制成员">派生类的拷贝控制成员</h2><p>和派生类的构造函数一样，当派生类定义了拷贝或移动操作时，该操作负责拷贝或移动包括基类部分成员在内的整个对象。</p><p>但析构函数只负责销毁派生类自己分配的成员，基类部分的析构会被自动调用执行。</p><h3 id="拷贝构造函数">拷贝构造函数</h3><p>通常直接使用基类的拷贝构造函数初始化基类部分，但要在初始化列表显式调用。<br><img src="https://cdn-a.markji.com/files/6800b4b12d056573639cf116_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:PoudJ85t7zVQbnAazX4tqzDXcY0=" alt=""></p><h3 id="拷贝赋值运算符">拷贝赋值运算符</h3><p>拷贝赋值也要在函数体内显式调用基类赋值运算符，否则不会自动调用。<br><img src="https://cdn-a.markji.com/files/6800b5472d056573639d06d8_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:8jppwX4IScpCav6_n_0R564_Hbs=" alt=""></p><h3 id="析构函数">析构函数</h3><p>基类析构函数可以被自动调用。<br><img src="https://cdn-a.markji.com/files/6800b6df75151df2bb621783_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:4WB0VxVK8x4_5yAhIv_sguCSATQ=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 面向对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>抽象基类与访问控制</title>
+      <link href="/posts/abstract-base-class.html"/>
+      <url>/posts/abstract-base-class.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h2><p>在虚函数声明语句后面添加=0定义纯虚函数，之后不能在类内为纯虚函数提供定义。</p><p>含义纯虚函数的类是抽象基类，不能直接创建一个抽象基类的对象。</p><p>派生类构造函数只初始化它的直接基类。</p><h2 id="访问控制与继承"><a href="#访问控制与继承" class="headerlink" title="访问控制与继承"></a>访问控制与继承</h2><p>protected 成员是”继承可见”的，但必须通过”自己继承来的一份”去访问；继承方式则控制”你能不能把你继承来的成员继续公开给外部或子类”。</p><h3 id="Protected成员访问规则"><a href="#Protected成员访问规则" class="headerlink" title="Protected成员访问规则"></a>Protected成员访问规则</h3><p>protected成员只能被派生类和友元函数访问，不能被类外部访问。</p><p>子类及其友元只能通过自己的类对象访问自己继承来的父类protected成员，不能直接通过父类对象访问原先父类对象中的 protected 成员。<br><img src="https://cdn-a.markji.com/files/67f54a17c7682418c3ba10ff_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:RwgZuv6gWWkOZpzzn3EbCmewKJg=" alt=""></p><h3 id="友元关系"><a href="#友元关系" class="headerlink" title="友元关系"></a>友元关系</h3><p>友元关系不能传递也不能继承。</p><h3 id="继承方式与访问权限"><a href="#继承方式与访问权限" class="headerlink" title="继承方式与访问权限"></a>继承方式与访问权限</h3><p>派生类的继承方式决定了外部对象对派生类成员的访问权限。<br><img src="https://cdn-a.markji.com/files/67f54aecc7682418c3ba2875_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:oi4Yb307pwlRkFO32aT4H6TcDWI=" alt=""></p><h3 id="修改访问权限"><a href="#修改访问权限" class="headerlink" title="修改访问权限"></a>修改访问权限</h3><p>using声明可以改变个别成员的可访问性。<br><img src="https://cdn-a.markji.com/files/67f54c96a5d66136f3d2bbb6_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:oE6rawLQqUT3ZBqRhzncksdrW68=" alt=""></p><h3 id="class与struct的区别"><a href="#class与struct的区别" class="headerlink" title="class与struct的区别"></a>class与struct的区别</h3><p>用class定义的派生类默认私有继承，struct定义的派生类默认公有继承。</p><p>这是这两个关键字的唯一区别。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 面向对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>类型转换与虚函数</title>
+      <link href="/posts/type-conversion-virtual-function.html"/>
+      <url>/posts/type-conversion-virtual-function.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="类型转换与继承"><a href="#类型转换与继承" class="headerlink" title="类型转换与继承"></a>类型转换与继承</h2><p>可以将基类指针/引用绑定到派生类对象上。也就是可以把派生类对象当成基类对象使用（需要传基类对象的参数也可以传派生类对象）但不能将基类转换成派生类。</p><h2 id="静态类型与动态类型"><a href="#静态类型与动态类型" class="headerlink" title="静态类型与动态类型"></a>静态类型与动态类型</h2><ul><li><strong>静态类型</strong>：变量或表达式在编译时确定的类型，由声明决定。代码写下时，编译器就能知道其静态类型</li><li><strong>动态类型</strong>：变量或表达式在运行时所表示的对象的实际类型。只有当程序运行时，才知道变量指向的具体对象是什么</li></ul><p>基类指针或引用可以指向派生类对象，此时，静态类型仍然是基类类型，动态类型则是运行时绑定的派生类类型。即该指针或引用只能访问基类的成员，其中非虚函数调用的是基类的版本，虚函数会动态绑定到派生类定义的版本。<br><img src="https://cdn-a.markji.com/files/67eb4702205d5713c0ce74ea_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:xDjxTZGidb8FFlxQqfvMlHX9tFw=" alt=""></p><p>如果是直接将派生类对象赋值给基类，仅保留基类部分，派生类的成员被丢弃。之后，该对象的动态类型就变成了基类。<br><img src="https://cdn-a.markji.com/files/67eb464d205d5713c0ce5701_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Qux9clPeNCQx9tzyd3Y_v054KGg=" alt=""></p><h2 id="虚函数特性"><a href="#虚函数特性" class="headerlink" title="虚函数特性"></a>虚函数特性</h2><p>所有虚函数都必须有定义。</p><p>当某个虚函数通过指针或引用调用时，对虚函数的调用在运行时才被解析。</p><h3 id="覆盖规则"><a href="#覆盖规则" class="headerlink" title="覆盖规则"></a>覆盖规则</h3><p>如果要在派生类中覆盖继承来的虚函数，形参类型必须完全一致。</p><p>否则名字相同但参数列表不同的函数会成为独立的新函数，而不是覆盖原有的。</p><p>因为声明在内层作用域的函数并不会重载声明在外层作用域的函数，而是隐藏外层的。</p><h3 id="特殊说明符"><a href="#特殊说明符" class="headerlink" title="特殊说明符"></a>特殊说明符</h3><ul><li>可以在派生类中使用override标记，此时如果没有覆盖原有的虚函数，编译器会报错</li><li>单独将函数指定为final，之后任何尝试覆盖该函数的操作都会报错</li></ul><h3 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h3><ul><li>虚函数总是使用基类中定义的默认实参</li><li>可以使用作用域运算符规避虚函数的动态绑定<br><img src="https://cdn-a.markji.com/files/67eb4e06205d5713c0cf9775_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:N9gNCJ2GaOGWb7oPsrg_e7l4VVE=" alt=""></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 面向对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>视频软解码流程2 read函数</title>
       <link href="/posts/video-decoding-image-conversion.html"/>
       <url>/posts/video-decoding-image-conversion.html</url>
