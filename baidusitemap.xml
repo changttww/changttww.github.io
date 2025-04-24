@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.magicat.cc/posts/video-resource-cleanup.html</loc>
+    <lastmod>2026-02-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/posix-socket.html</loc>
+    <lastmod>2025-04-24</lastmod>
+  </url>
+  <url>
     <loc>https://www.magicat.cc/posts/constructor-virtual-function.html</loc>
     <lastmod>2025-04-23</lastmod>
   </url>
@@ -21,6 +29,14 @@
     <lastmod>2025-04-23</lastmod>
   </url>
   <url>
+    <loc>https://www.magicat.cc/posts/qt-non-blocking-delay.html</loc>
+    <lastmod>2025-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/qt-object-tree.html</loc>
+    <lastmod>2025-04-15</lastmod>
+  </url>
+  <url>
     <loc>https://www.magicat.cc/posts/video-decoding-process.html</loc>
     <lastmod>2025-04-12</lastmod>
   </url>
@@ -37,8 +53,12 @@
     <lastmod>2025-03-28</lastmod>
   </url>
   <url>
-    <loc>https://www.magicat.cc/posts/posix-socket.html</loc>
-    <lastmod>2025-03-28</lastmod>
+    <loc>https://www.magicat.cc/posts/class-type-conversion.html</loc>
+    <lastmod>2025-03-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/operator-overloading.html</loc>
+    <lastmod>2025-03-24</lastmod>
   </url>
   <url>
     <loc>https://www.magicat.cc/posts/2013454d.html</loc>

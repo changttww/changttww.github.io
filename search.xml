@@ -139,6 +139,87 @@
     
     
     <entry>
+      <title>Qt非阻塞延迟实现</title>
+      <link href="/posts/qt-non-blocking-delay.html"/>
+      <url>/posts/qt-non-blocking-delay.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="QTimer-singleShot简介"><a href="#QTimer-singleShot简介" class="headerlink" title="QTimer::singleShot简介"></a>QTimer::singleShot简介</h2><p><img src="https://cdn-a.markji.com/files/68076cb12d05657363373ede_hd.png?e=1745509985100&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:iFm9_QupELxQqTeUfrVVlBBltxQ=" alt=""></p><h2 id="QEventLoop简介"><a href="#QEventLoop简介" class="headerlink" title="QEventLoop简介"></a>QEventLoop简介</h2><p>QEventLoop 是控制事件循环的类，它在 Qt 程序中管理事件队列，并将事件分发到相应的对象。</p><h2 id="事件循环控制"><a href="#事件循环控制" class="headerlink" title="事件循环控制"></a>事件循环控制</h2><p>exec()函数启动事件循环，等待事件的发生。直到调用 quit() 方法或事件循环结束，程序才会继续执行后面的代码。</p><p>等待的过程是非阻塞的，可以在等待过程中响应其他事件。</p><p>quit() 用于退出事件循环。<br><img src="https://cdn-a.markji.com/files/680775f56092fd692c29d001_hd.png?e=1745509985100&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:mq7ppAE5sdGRE2hcmUV0Qew__TU=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> GUI开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Qt对象树机制</title>
+      <link href="/posts/qt-object-tree.html"/>
+      <url>/posts/qt-object-tree.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Qt对象继承体系"><a href="#Qt对象继承体系" class="headerlink" title="Qt对象继承体系"></a>Qt对象继承体系</h2><p>QObject是大多数对象的基类，QWidget继承于QObject，又是大多数页面和窗口组件的基类。</p><h2 id="对象树结构"><a href="#对象树结构" class="headerlink" title="对象树结构"></a>对象树结构</h2><p>当QOject及其子类之间建立父子关系时，所有子类对象会被加入父类对象一个成员变量名为children的列表中。</p><p>当父对象析构时，children里的所有子对象也会一起析构；如果子对象先被析构，会自动被父对象的children列表移除。<br><img src="https://cdn-a.markji.com/files/67fa2e507f917e87d7c3bff6_hd.png?e=1745509985100&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7tDj9yoaV3bsuvNjJO3b6ZICfqE=" alt=""></p><h2 id="父对象设置"><a href="#父对象设置" class="headerlink" title="父对象设置"></a>父对象设置</h2><p>所以一般在创建qt子对象时，会先在构造函数初始化列表就指定parent对象。</p><p>默认写法可以是ReadThread(QObject *parent = nullptr)，父对象为空。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> GUI开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>视频软解码流程3 close函数</title>
+      <link href="/posts/video-resource-cleanup.html"/>
+      <url>/posts/video-resource-cleanup.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="close函数实现"><a href="#close函数实现" class="headerlink" title="close函数实现"></a>close函数实现</h2><h3 id="1-清空缓存"><a href="#1-清空缓存" class="headerlink" title="1. 清空缓存"></a>1. 清空缓存</h3><p>定义了clear工具函数，要用到两个api：</p><ul><li>avformat_flush传入解封装上下文，刷新解封装上下文的高层读取缓冲区</li><li>avio_flush传入解封装上下文中的pb指针，刷新pb指向的低层io缓冲区<br><img src="https://cdn-a.markji.com/files/67fa253f75151df2bbaeece9_hd.png?e=1745509985100&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:-EYQzh0e8Co_xsijeoaT3CA1P6c=" alt=""></li></ul><h3 id="2-释放内存"><a href="#2-释放内存" class="headerlink" title="2. 释放内存"></a>2. 释放内存</h3><p>定义free工具函数释放ffmpeg对象的内存，再释放普通成员变量的内存。</p><h2 id="其他工具函数"><a href="#其他工具函数" class="headerlink" title="其他工具函数"></a>其他工具函数</h2><p>还有两个辅助工具函数：</p><ul><li>isEnd：返回视频是否读取完成</li><li>pts：返回当前帧的显示时间</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 多媒体技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 音视频开发 </tag>
+            
+            <tag> FFmpeg </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>视频软解码流程2 read函数</title>
       <link href="/posts/video-decoding-image-conversion.html"/>
       <url>/posts/video-decoding-image-conversion.html</url>
@@ -222,6 +303,60 @@
     
     
     <entry>
+      <title>POSIX网络协议栈</title>
+      <link href="/posts/posix-socket.html"/>
+      <url>/posts/posix-socket.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="服务器端流程"><a href="#服务器端流程" class="headerlink" title="服务器端流程"></a>服务器端流程</h2><ol><li><p><strong>创建socket</strong>：选择UDP或TCP协议，返回一个整型句柄</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">// TCP</span></span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_DGRAM, <span class="number">0</span>);  <span class="comment">// UDP</span></span><br></pre></td></tr></table></figure></li><li><p><strong>绑定socket</strong>：将socket绑定到特定IP地址和端口</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">server_addr</span>;</span></span><br><span class="line"><span class="built_in">memset</span>(&amp;server_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(server_addr));</span><br><span class="line">server_addr.sin_family = AF_INET;</span><br><span class="line">server_addr.sin_addr.s_addr = htonl(INADDR_ANY); <span class="comment">// 任意IP</span></span><br><span class="line">server_addr.sin_port = htons(PORT);</span><br><span class="line"></span><br><span class="line">bind(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>监听socket</strong>：监听绑定的端口（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen(sockfd, BACKLOG); <span class="comment">// BACKLOG为等待连接队列的最大长度</span></span><br></pre></td></tr></table></figure></li><li><p><strong>接受连接</strong>：接受客户端连接请求（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">client_addr</span>;</span></span><br><span class="line"><span class="type">socklen_t</span> client_len = <span class="keyword">sizeof</span>(client_addr);</span><br><span class="line"><span class="type">int</span> client_sockfd = accept(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, &amp;client_len);</span><br></pre></td></tr></table></figure></li><li><p><strong>发送数据</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TCP</span></span><br><span class="line">send(client_sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// UDP</span></span><br><span class="line">sendto(sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>, </span><br><span class="line">       (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, <span class="keyword">sizeof</span>(client_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>接收数据</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TCP</span></span><br><span class="line">recv(client_sockfd, buffer, BUFFER_SIZE, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// UDP</span></span><br><span class="line">recvfrom(sockfd, buffer, BUFFER_SIZE, <span class="number">0</span>,</span><br><span class="line">         (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, &amp;client_len);</span><br></pre></td></tr></table></figure></li><li><p><strong>关闭连接</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">close(client_sockfd); <span class="comment">// 关闭客户端连接</span></span><br><span class="line">close(sockfd);        <span class="comment">// 关闭服务器socket</span></span><br></pre></td></tr></table></figure></li></ol><h2 id="客户端流程"><a href="#客户端流程" class="headerlink" title="客户端流程"></a>客户端流程</h2><ol><li><p><strong>创建socket</strong>：与服务器端相同</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">// TCP</span></span><br></pre></td></tr></table></figure></li><li><p><strong>发起连接</strong>：连接到服务器（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">server_addr</span>;</span></span><br><span class="line"><span class="built_in">memset</span>(&amp;server_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(server_addr));</span><br><span class="line">server_addr.sin_family = AF_INET;</span><br><span class="line">server_addr.sin_addr.s_addr = inet_addr(<span class="string">&quot;127.0.0.1&quot;</span>); <span class="comment">// 服务器IP</span></span><br><span class="line">server_addr.sin_port = htons(PORT);</span><br><span class="line"></span><br><span class="line">connect(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>发送/接收数据</strong>：与服务器端相同</p></li><li><p><strong>关闭连接</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(sockfd);</span><br></pre></td></tr></table></figure><p>```</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络编程 </tag>
+            
+            <tag> Socket </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>类类型转换</title>
+      <link href="/posts/class-type-conversion.html"/>
+      <url>/posts/class-type-conversion.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="类类型转换运算符"><a href="#类类型转换运算符" class="headerlink" title="类类型转换运算符"></a>类类型转换运算符</h2><p>类类型转换运算符是类的特殊成员函数，将一个类对象的值转换为其他类型。</p><p>没有显式的返回类型也没有形参，一般是const，真正的返回类型由函数名决定。</p><h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>有两个转换路径，构造函数和类类型转换运算符。<br><img src="https://cdn-a.markji.com/files/67e206912acfe6cc5a34c8b6_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:OacYINZ9WNWp8ehp8yupz1N59Ns=" alt=""><br><img src="https://cdn-a.markji.com/files/67e206a105df2632082523cb_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:UXteuL4T4eef4dNzEoNcIqSiOcA=" alt=""></p><h2 id="显式类型转换"><a href="#显式类型转换" class="headerlink" title="显式类型转换"></a>显式类型转换</h2><p>前面加上explicit，除了用作条件，只能显式调用。<br><img src="https://cdn-a.markji.com/files/67e207c905df26320825582d_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:MXgNBmy11wAagDqN3-HK9_pGdWM=" alt=""><br><img src="https://cdn-a.markji.com/files/67e207f081bdefd1bebbf7a3_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:BpnbzrjJ-tYOgcjaSAroSKRrRBg=" alt=""></p><h2 id="避免二义性转换"><a href="#避免二义性转换" class="headerlink" title="避免二义性转换"></a>避免二义性转换</h2><p>当类中包含类型转换时，必须确保在类类型和目标类型之间只有唯一的转换方式，否则编译器会不知道该选择哪个转换，导致二义性错误。</p><h3 id="二义性的两种情况"><a href="#二义性的两种情况" class="headerlink" title="二义性的两种情况"></a>二义性的两种情况</h3><ol><li><p>两个类之间存在相同的类型转换<br><img src="https://cdn-a.markji.com/files/67e20fe681bdefd1bebd0179_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:zNseuxsCkSF_AimlGlh5MRzb5hE=" alt=""></p></li><li><p>类定义了多个与算术类型相关的转换</p></li></ol><h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ul><li>尽量只提供一个用户定义的类型转换（如operator int() 或 operator double() 选一个）</li><li>避免多个接受不同算术类型的构造函数（最好只提供 A(double)，避免 A(int) + A(double) 并存）</li><li>显式调用转换，避免隐式转换带来的二义性问题</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 面向对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>可调用对象</title>
       <link href="/posts/bbed94b9.html"/>
       <url>/posts/bbed94b9.html</url>
@@ -247,25 +382,25 @@
     
     
     <entry>
-      <title>POSIX网络协议栈</title>
-      <link href="/posts/posix-socket.html"/>
-      <url>/posts/posix-socket.html</url>
+      <title>运算符重载</title>
+      <link href="/posts/operator-overloading.html"/>
+      <url>/posts/operator-overloading.html</url>
       
-        <content type="html"><![CDATA[<h2 id="服务器端流程">服务器端流程</h2><ol><li><p><strong>创建socket</strong>：选择UDP或TCP协议，返回一个整型句柄</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">// TCP</span></span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_DGRAM, <span class="number">0</span>);  <span class="comment">// UDP</span></span><br></pre></td></tr></table></figure></li><li><p><strong>绑定socket</strong>：将socket绑定到特定IP地址和端口</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">server_addr</span>;</span></span><br><span class="line"><span class="built_in">memset</span>(&amp;server_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(server_addr));</span><br><span class="line">server_addr.sin_family = AF_INET;</span><br><span class="line">server_addr.sin_addr.s_addr = htonl(INADDR_ANY); <span class="comment">// 任意IP</span></span><br><span class="line">server_addr.sin_port = htons(PORT);</span><br><span class="line"></span><br><span class="line">bind(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>监听socket</strong>：监听绑定的端口（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen(sockfd, BACKLOG); <span class="comment">// BACKLOG为等待连接队列的最大长度</span></span><br></pre></td></tr></table></figure></li><li><p><strong>接受连接</strong>：接受客户端连接请求（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">client_addr</span>;</span></span><br><span class="line"><span class="type">socklen_t</span> client_len = <span class="keyword">sizeof</span>(client_addr);</span><br><span class="line"><span class="type">int</span> client_sockfd = accept(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, &amp;client_len);</span><br></pre></td></tr></table></figure></li><li><p><strong>发送数据</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TCP</span></span><br><span class="line">send(client_sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// UDP</span></span><br><span class="line">sendto(sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>, </span><br><span class="line">       (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, <span class="keyword">sizeof</span>(client_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>接收数据</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TCP</span></span><br><span class="line">recv(client_sockfd, buffer, BUFFER_SIZE, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// UDP</span></span><br><span class="line">recvfrom(sockfd, buffer, BUFFER_SIZE, <span class="number">0</span>,</span><br><span class="line">         (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, &amp;client_len);</span><br></pre></td></tr></table></figure></li><li><p><strong>关闭连接</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">close(client_sockfd); <span class="comment">// 关闭客户端连接</span></span><br><span class="line">close(sockfd);        <span class="comment">// 关闭服务器socket</span></span><br></pre></td></tr></table></figure></li></ol><h2 id="客户端流程">客户端流程</h2><ol><li><p><strong>创建socket</strong>：与服务器端相同</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">// TCP</span></span><br></pre></td></tr></table></figure></li><li><p><strong>发起连接</strong>：连接到服务器（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">server_addr</span>;</span></span><br><span class="line"><span class="built_in">memset</span>(&amp;server_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(server_addr));</span><br><span class="line">server_addr.sin_family = AF_INET;</span><br><span class="line">server_addr.sin_addr.s_addr = inet_addr(<span class="string">&quot;127.0.0.1&quot;</span>); <span class="comment">// 服务器IP</span></span><br><span class="line">server_addr.sin_port = htons(PORT);</span><br><span class="line"></span><br><span class="line">connect(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>发送/接收数据</strong>：与服务器端相同</p></li><li><p><strong>关闭连接</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(sockfd);</span><br></pre></td></tr></table></figure></li></ol><pre><code></code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="重载运算基本规则"><a href="#重载运算基本规则" class="headerlink" title="重载运算基本规则"></a>重载运算基本规则</h2><p>任意重载运算符都至少有一个作用对象是类的成员或类类型，不能全是内置类型，否则重载无意义。</p><p>重载运算符如果定义为成员函数，左侧作用对象必须是类的成员或类类型。<br><img src="https://cdn-a.markji.com/files/67da8c7176d0a5611b86941c_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:fSnxtw3a6I7G-WMo344DYH4fTcA=" alt=""></p><h2 id="非成员函数重载"><a href="#非成员函数重载" class="headerlink" title="非成员函数重载"></a>非成员函数重载</h2><h3 id="输入输出运算符"><a href="#输入输出运算符" class="headerlink" title="输入输出运算符"></a>输入输出运算符</h3><p>输入输出的重载函数必须是非成员函数。</p><p>输入函数必须处理可能的失败情况，输出函数则不需要。<br><img src="https://cdn-a.markji.com/files/67daacc1b49cc95a6c34f65f_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Ns9gzfQHIV1WjSCr-g4Lu2_ZvhY=" alt=""></p><h3 id="算术和关系运算符"><a href="#算术和关系运算符" class="headerlink" title="算术和关系运算符"></a>算术和关系运算符</h3><p>一开始写过，一般也是非成员函数。</p><p>如果同时定义算术运算符和复合赋值运算符，在定义算术运算符时通常用到复合赋值运算符。</p><p>如果定义了==，不要轻易定义&gt;或&lt;，容易在逻辑上不一致。</p><h2 id="成员函数重载"><a href="#成员函数重载" class="headerlink" title="成员函数重载"></a>成员函数重载</h2><h3 id="必须定义为成员的运算符"><a href="#必须定义为成员的运算符" class="headerlink" title="必须定义为成员的运算符"></a>必须定义为成员的运算符</h3><ul><li>赋值运算符</li><li>下标运算符</li><li>箭头运算符</li><li>函数调用运算符</li></ul><h3 id="通常定义为成员的运算符"><a href="#通常定义为成员的运算符" class="headerlink" title="通常定义为成员的运算符"></a>通常定义为成员的运算符</h3><ul><li>复合赋值运算符</li><li>递增递减运算符</li><li>解引用运算符</li></ul><h3 id="特殊运算符的实现"><a href="#特殊运算符的实现" class="headerlink" title="特殊运算符的实现"></a>特殊运算符的实现</h3><h4 id="下标运算符"><a href="#下标运算符" class="headerlink" title="下标运算符"></a>下标运算符</h4><p>下标运算符区分const。<br><img src="https://cdn-a.markji.com/files/67dabab297f00c5d454cfcac_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:V1F8k_sQ-24u7IvXplHuUosp8SY=" alt=""></p><h4 id="递增递减运算符"><a href="#递增递减运算符" class="headerlink" title="递增递减运算符"></a>递增递减运算符</h4><p>递增递减运算符要区分前置后置。<br><img src="https://cdn-a.markji.com/files/67dbdb4a97f00c5d456de391_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:pKQOZa71xwERgO32DA0p_I09ncw=" alt=""></p><h4 id="箭头运算符"><a href="#箭头运算符" class="headerlink" title="箭头运算符"></a>箭头运算符</h4><p>对箭头运算符的重载必须返回一个指针或一另一个重载了-&gt;的类对象。</p><p>直接返回指针的情况。<br><img src="https://cdn-a.markji.com/files/67dbe15776d0a5611bae8267_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:OljKVmP4z6dyv7U1fOqoTzmFKc4=" alt=""></p><p>返回另一个重载了-&gt;的类对象的情况。<br><img src="https://cdn-a.markji.com/files/67dbe1ca76d0a5611bae97b3_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7uHLVON5TUc-4RgM1gnq6DFnrW0=" alt=""></p><h4 id="函数调用运算符"><a href="#函数调用运算符" class="headerlink" title="函数调用运算符"></a>函数调用运算符</h4><p>重载函数调用运算符，把类对象当成函数使用（可调用对象）。<br><img src="https://cdn-a.markji.com/files/67e0e72ce02418cdf1a52db7_hd.png?e=1745511168403&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:b3hUA6rgoh2xQcoJwbaLvboSIdw=" alt=""></p>]]></content>
       
       
       <categories>
           
-          <category> 计算机网络 </category>
+          <category> 编程语言 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 网络编程 </tag>
+            <tag> C++ </tag>
             
-            <tag> Socket </tag>
+            <tag> 面向对象 </tag>
             
         </tags>
       
