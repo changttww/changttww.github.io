@@ -4,6 +4,145 @@
   
     
     <entry>
+      <title>区块链余额查询流程</title>
+      <link href="/posts/blockchain-balance-query.html"/>
+      <url>/posts/blockchain-balance-query.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="初始化阶段">初始化阶段</h2><p>创建一个空的 unspentTXs 切片，用来存储所有未花费的交易。</p><p>创建一个空的 spentTXOs 映射，存储已花费的交易输出（以 txID 和输出索引的方式标记已花费的输出）。</p><h2 id="迭代器获取">迭代器获取</h2><p>获取区块链的迭代器：<br>调用 bc.Iterator() 获取一个迭代器 bci，用于遍历区块链中的每一个区块。</p><h2 id="区块遍历过程">区块遍历过程</h2><h3 id="区块获取">区块获取</h3><p>使用 bci.Next() 获取下一个区块 block。</p><p>如果区块的 PrevBlockHash 长度为零，表示遍历到了区块链的头部，停止遍历。</p><h3 id="交易遍历">交易遍历</h3><p>对每个区块中的所有交易（block.Transactions），执行以下步骤：</p><ol><li>获取交易的 txID，并将其转为十六进制字符串。</li></ol><h3 id="输出检查">输出检查</h3><p>对当前交易的每个输出（tx.Vout），执行以下步骤：</p><ol><li>如果该输出已经在 spentTXOs 中标记为已花费，跳过该输出（继续检查下一个输出）</li><li>检查当前输出是否能被 address 解锁（out.CanBeUnlockedWith(address)）</li><li>如果可以解锁，则将当前交易添加到 unspentTXs 中</li></ol><h3 id="输入处理">输入处理</h3><p>如果当前交易不是一个 coinbase 交易（即它不是系统奖励的交易），则继续遍历交易的输入（tx.Vin）。</p><p>对每个输入，检查其是否能用 address 解锁（in.CanUnlockOutputWith(address)）：</p><ul><li>如果能解锁，说明该输入花费了某个输出</li><li>根据输入的 Txid 和 Vout，标记该输出为已花费，添加到 spentTXOs 中</li></ul><h2 id="遍历终止">遍历终止</h2><p>重复上述步骤直到遍历所有区块：<br>如果区块的 PrevBlockHash 长度为零，说明已经遍历到链头，退出遍历。</p><h2 id="结果返回">结果返回</h2><p>返回 unspentTXs，其中包含了所有与特定地址相关且未被花费的交易。<br><img src="https://cdn-a.markji.com/files/6809e95d6092fd692c50f89a_hd.png?e=1745854305346&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:FKD3hsV1Cpif-krQweT7KM0gP_w=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 区块链技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 区块链 </tag>
+            
+            <tag> 比特币 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>区块链核心代码3</title>
+      <link href="/posts/blockchain-transaction.html"/>
+      <url>/posts/blockchain-transaction.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="基础数据结构">基础数据结构</h2><h3 id="1-交易结构">1. 交易结构</h3><p>定义交易结构体，包含：</p><ul><li>id</li><li>TXInput</li><li>TXOutput</li></ul><h3 id="2-交易输出结构">2. 交易输出结构</h3><p>定义TXOutput结构体，内部有：</p><ul><li>value（单位是satoshi，一聪，btc最小单位）</li><li>ScriptPubKey（锁定脚本，对方地址/公钥）</li></ul><p>注：value表示代金券上的金额，锁定脚本即代金券的使用规则，满足了才可以用。</p><h3 id="3-交易输入结构">3. 交易输入结构</h3><p>定义TXInput结构体，内部有：</p><ul><li>TXid（代金券编号）</li><li>Vout（输出索引）</li><li>ScriptSip（解锁脚本）</li></ul><p>注：</p><ul><li>Vout是用来告诉系统上次交易的使用输出，也是告诉商店要用哪张代金券（本次输入）</li><li>本次输入是之前的输出，除了新块，否则都要引用之前的输出，故其实没有被引用的输出就是余额</li></ul><h2 id="功能实现">功能实现</h2><h3 id="4-创世交易">4. 创世交易</h3><p>定义创世区块的TX函数，这个没有前vin，只有输出，也没有解锁脚本（为空）。</p><h3 id="5-区块结构修改">5. 区块结构修改</h3><p>修改block结构体的成员，把data换成Transactions函数。</p><h3 id="6-代码适配">6. 代码适配</h3><p>把之前一切关于data的代码进行修改换成transaction，同时修改创建区块链的函数，这个函数会接收一个address给创世矿工，且之前的工作量证明需要把data换成TX。</p><h3 id="7-余额查询基础">7. 余额查询基础</h3><p>定义能否解锁和锁定输入输出的函数（这里只是简单查询一下是否是自己的密钥）。</p><h3 id="8-未花费输出查询">8. 未花费输出查询</h3><p>定义FindUnspentTransactions函数，创建哈希表存储所有已花费的输出（就是每个后vin对应的前vout），那些没有后面vin的vout就是余额。</p><h3 id="9-余额计算">9. 余额计算</h3><p>定义getbalance函数，用于把Find函数找出来的UTXOs（未交易输出）合并起来算除余额。</p><h3 id="10-交易生成">10. 交易生成</h3><p>定义NewUTXOTransaction用于生成交易信息。</p><h3 id="11-可用输出查询">11. 可用输出查询</h3><p>定义FindSpendableOutputs，找到未花费的金额，并且确保金额足够。</p><h3 id="12-转账功能">12. 转账功能</h3><p>定义send函数用于发送币。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 区块链技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 区块链 </tag>
+            
+            <tag> 比特币 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>区块链核心代码2</title>
+      <link href="/posts/blockchain-persistence.html"/>
+      <url>/posts/blockchain-persistence.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="区块链存储机制">区块链存储机制</h2><p>理论上任何的数据库都可以，bitcoin本质上是分布式存储。</p><p>但是这边先讨论存储，若使用字节型数据库则需要把block给序列化存储。</p><p>bitcoin的存储一般分为了blocks和chainstate：</p><ul><li>blocks里面就是每个区块的内容</li><li>chainstate存放着剩余的比特币数量</li></ul><p>注意：为了性能可以单独存储每一块，这样就不需要把整个链拿出来，但是一起存较为简单。</p><h2 id="核心实现">核心实现</h2><h3 id="1-序列化">1. 序列化</h3><p>提供序列化的block成员函数，把自身序列化。</p><h3 id="2-反序列化">2. 反序列化</h3><p>提供反序列化的非成员函数，会返回一个block。</p><h3 id="3-创世块存储">3. 创世块存储</h3><p>修改创建创世块函数，打开数据库(键值对)，读取blocksBucket：</p><ul><li>若没有则创建并往里面放入创世块和l键</li><li>若已经存在了则读取l键，然后返回blockchain(这个blockchain，内部加一个了db的成员指针)</li></ul><p>注意：l键始终存储了最后一个块的哈希值，且存放一个块的时候以他的哈希为key，序列化为value，可以通过get(key)获取value。</p><h3 id="4-区块添加修改">4. 区块添加修改</h3><p>修改addblock函数，修改前哈希的来源为数据库中的l键。</p><h3 id="5-遍历功能">5. 遍历功能</h3><p>添加遍历blockchain函数，l键到创世块，先通过l键获取最后一个区块，然后用每个区块的前哈希来更新当前哈希继续遍历。</p><h3 id="6-迭代器实现">6. 迭代器实现</h3><ul><li>新增迭代器类</li><li>新增blockchain成员函数，创建迭代器</li></ul><p>当前类图：</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 区块链技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 区块链 </tag>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>区块链核心代码1</title>
+      <link href="/posts/blockchain-core-implementation.html"/>
+      <url>/posts/blockchain-core-implementation.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="基础数据结构">基础数据结构</h2><h3 id="1-区块结构">1. 区块结构</h3><p>定义区块头struct block，包含：</p><ul><li>时间戳</li><li>前哈希</li><li>data</li><li>当前哈希</li></ul><h3 id="2-哈希计算">2. 哈希计算</h3><p>给block提供计算当前哈希的方法。</p><h3 id="3-区块链结构">3. 区块链结构</h3><p>定义区块链struct blockchain，内部有block数组。</p><h2 id="区块操作">区块操作</h2><h3 id="4-区块添加">4. 区块添加</h3><p>定义addblock函数，提供添加区块的方法。</p><h3 id="5-创世块">5. 创世块</h3><p>定义添加创世块函数。</p><h2 id="工作量证明机制">工作量证明机制</h2><h3 id="6-POW结构">6. POW结构</h3><p>定义工作量证明结构体struct ProofOfWork，内部有：</p><ul><li>block</li><li>target(000010000000)</li></ul><p>定义其构造函数，就是一个大整数，若计算值小于target，则说明至少前五位为0。</p><h3 id="7-数据准备">7. 数据准备</h3><p>定义&quot;准备数据&quot;的ProofOfWork的成员函数，拼接用于哈希的数据，返回的data会被用于哈希。</p><h3 id="8-运行验证">8. 运行验证</h3><p>定义Run的成员函数，循环++，查询是否满足条件，满足了就退出for循环。<br>注意：要定义一个nonce的最大值防止溢出，溢出了也退出。</p><h2 id="功能完善">功能完善</h2><h3 id="9-添加验证">9. 添加验证</h3><p>修改addblock函数，在其中调用工作量证明，run成功了才执行添加。</p><h3 id="10-有效性验证">10. 有效性验证</h3><p>定义确认区块有效区块，确认一下之前Run不是因为溢出而结束。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 区块链技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 区块链 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>区块链基础知识</title>
+      <link href="/posts/blockchain-basics.html"/>
+      <url>/posts/blockchain-basics.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="简易区块结构">简易区块结构</h2><p>区块内容包含：</p><ul><li>时间戳</li><li>前哈希</li><li>当前哈希</li><li>实际data</li></ul><p>当前哈希的计算方法：<br>SHA256(时间戳,前哈希,实际data)</p><p>实际data存放的数据为交易信息。</p><p>区块链本质上为一个数据库，每一个块都连到前一个块。</p><h2 id="共识机制">共识机制</h2><p>因为是分布式数据库，且没有独裁者，故加入一个块需要获得其他参与者的同意。</p><h3 id="工作量证明">工作量证明</h3><p>需要经历一系列繁重的运算才可以获得加入块的权力。</p><h3 id="哈希函数">哈希函数</h3><p>哈希函数被广泛用于检测数据的一致性，哈希值和原始数据是一一对应的，可以用来检测文件是否损坏，比较一下传输之后的哈希和作者提供的哈希。</p><h2 id="比特币的算法">比特币的算法</h2><p>把时间戳，前哈希，实际data然后用一个计数器不断+1来执行哈希，直到哈希值前20为0(难度为20)，概率为1/2^20。</p><p>注意：</p><ul><li>nonce为计数器，一个密码学术语</li><li>因为全是0开头，所以只要是否比较小于0x000000…，就知道是否前20位都是0</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 区块链技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 区块链 </tag>
+            
+            <tag> 比特币 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>构造函数中的虚函数与继承</title>
       <link href="/posts/constructor-virtual-function.html"/>
       <url>/posts/constructor-virtual-function.html</url>
