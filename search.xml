@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>区块链网络架构</title>
+      <link href="/posts/blockchain-network.html"/>
+      <url>/posts/blockchain-network.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="网络结构">网络结构</h2><p>区块链网络是p2p拓扑扁平结构，每个节点既是服务器也是客户端。</p><h2 id="节点类型">节点类型</h2><h3 id="节点成员分类">节点成员分类</h3><ul><li>矿工</li><li>全节点</li><li>SPV简单支付验证</li></ul><h3 id="全节点">全节点</h3><p>全节点记录了完整区块信息，同时提供了路由操作。</p><h3 id="SPV节点">SPV节点</h3><p>SPV不存放全部，而是一个交易子集，比如，发送到某个指定地址的交易(如全部发给Alice的交易)。</p><h2 id="交易同步机制">交易同步机制</h2><p>交易场景如下：<br><img src="https://cdn-a.markji.com/files/680f7bc96092fd692cbd1817_hd.png?e=1746029138069&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:4eldrch0jXTVfMw_MgBc06yr5XM=" alt=""><br>用一个version进行节点间的通信，判断双方谁的链更长，从而和中心节点或者对方更新链信息。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 区块链技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 区块链 </tag>
+            
+            <tag> P2P网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>区块链核心代码4</title>
       <link href="/posts/blockchain-wallet.html"/>
       <url>/posts/blockchain-wallet.html</url>
