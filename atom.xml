@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-04-30T15:23:59.000Z</updated>
+  <updated>2025-05-01T13:03:27.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>区块链网络通信流程</title>
+    <link href="https://www.magicat.cc/posts/blockchain-network-communication.html"/>
+    <id>https://www.magicat.cc/posts/blockchain-network-communication.html</id>
+    <published>2025-05-01T13:03:27.000Z</published>
+    <updated>2025-05-01T13:03:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="接收方处理流程">接收方处理流程</h2><h3 id="服务启动">服务启动</h3><p>调用startserver</p><h3 id="Version消息处理">Version消息处理</h3><p>处理handleVersion：</p><ul><li>若自身慢了，则请求获取块</li><li>若自身快了，则发version给对方</li><li>注：发送version是用来请求同步的</li></ul><h3 id="Inv消息处理">Inv消息处理</h3><p>处理handleInv：</p><ul><li>inv只是一个清单，表示自己有什么块和tx</li><li>收到发送方的inv之后自己判断哪些是要下载的</li><li>然后调用getData执行下载</li></ul><h3 id="Block消息处理">Block消息处理</h3><p>处理handleBlock：</p><ul><li>把新增的区块加到自身链里</li></ul><h3 id="交易处理">交易处理</h3><p>处理handleTx</p><h2 id="发送方处理流程">发送方处理流程</h2><h3 id="服务启动-2">服务启动</h3><p>调用startserver</p><h3 id="区块请求处理">区块请求处理</h3><p>处理handleGetBlock</p><h3 id="数据请求处理">数据请求处理</h3><p>处理getData</p>]]></content>
+    
+    
+    <summary type="html">区块链网络中节点间通信的详细流程及处理机制</summary>
+    
+    
+    
+    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="P2P网络" scheme="https://www.magicat.cc/tags/P2P%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="网络通信" scheme="https://www.magicat.cc/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>区块链网络架构</title>
@@ -460,29 +485,6 @@
     <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
     
     <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>POSIX网络协议栈</title>
-    <link href="https://www.magicat.cc/posts/posix-socket.html"/>
-    <id>https://www.magicat.cc/posts/posix-socket.html</id>
-    <published>2025-03-28T02:26:37.000Z</published>
-    <updated>2025-04-24T15:19:09.923Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="服务器端流程"><a href="#服务器端流程" class="headerlink" title="服务器端流程"></a>服务器端流程</h2><ol><li><p><strong>创建socket</strong>：选择UDP或TCP协议，返回一个整型句柄</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">// TCP</span></span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_DGRAM, <span class="number">0</span>);  <span class="comment">// UDP</span></span><br></pre></td></tr></table></figure></li><li><p><strong>绑定socket</strong>：将socket绑定到特定IP地址和端口</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">server_addr</span>;</span></span><br><span class="line"><span class="built_in">memset</span>(&amp;server_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(server_addr));</span><br><span class="line">server_addr.sin_family = AF_INET;</span><br><span class="line">server_addr.sin_addr.s_addr = htonl(INADDR_ANY); <span class="comment">// 任意IP</span></span><br><span class="line">server_addr.sin_port = htons(PORT);</span><br><span class="line"></span><br><span class="line">bind(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>监听socket</strong>：监听绑定的端口（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen(sockfd, BACKLOG); <span class="comment">// BACKLOG为等待连接队列的最大长度</span></span><br></pre></td></tr></table></figure></li><li><p><strong>接受连接</strong>：接受客户端连接请求（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">client_addr</span>;</span></span><br><span class="line"><span class="type">socklen_t</span> client_len = <span class="keyword">sizeof</span>(client_addr);</span><br><span class="line"><span class="type">int</span> client_sockfd = accept(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, &amp;client_len);</span><br></pre></td></tr></table></figure></li><li><p><strong>发送数据</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TCP</span></span><br><span class="line">send(client_sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// UDP</span></span><br><span class="line">sendto(sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>, </span><br><span class="line">       (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, <span class="keyword">sizeof</span>(client_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>接收数据</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TCP</span></span><br><span class="line">recv(client_sockfd, buffer, BUFFER_SIZE, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// UDP</span></span><br><span class="line">recvfrom(sockfd, buffer, BUFFER_SIZE, <span class="number">0</span>,</span><br><span class="line">         (<span class="keyword">struct</span> sockaddr*)&amp;client_addr, &amp;client_len);</span><br></pre></td></tr></table></figure></li><li><p><strong>关闭连接</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">close(client_sockfd); <span class="comment">// 关闭客户端连接</span></span><br><span class="line">close(sockfd);        <span class="comment">// 关闭服务器socket</span></span><br></pre></td></tr></table></figure></li></ol><h2 id="客户端流程"><a href="#客户端流程" class="headerlink" title="客户端流程"></a>客户端流程</h2><ol><li><p><strong>创建socket</strong>：与服务器端相同</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">// TCP</span></span><br></pre></td></tr></table></figure></li><li><p><strong>发起连接</strong>：连接到服务器（仅TCP需要）</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">server_addr</span>;</span></span><br><span class="line"><span class="built_in">memset</span>(&amp;server_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(server_addr));</span><br><span class="line">server_addr.sin_family = AF_INET;</span><br><span class="line">server_addr.sin_addr.s_addr = inet_addr(<span class="string">&quot;127.0.0.1&quot;</span>); <span class="comment">// 服务器IP</span></span><br><span class="line">server_addr.sin_port = htons(PORT);</span><br><span class="line"></span><br><span class="line">connect(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr));</span><br></pre></td></tr></table></figure></li><li><p><strong>发送/接收数据</strong>：与服务器端相同</p></li><li><p><strong>关闭连接</strong>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(sockfd);</span><br></pre></td></tr></table></figure><p>```</p></li></ol>]]></content>
-    
-    
-    <summary type="html">POSIX网络协议栈中服务器和客户端的基本操作流程</summary>
-    
-    
-    
-    <category term="计算机网络" scheme="https://www.magicat.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-    <category term="网络编程" scheme="https://www.magicat.cc/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
-    
-    <category term="Socket" scheme="https://www.magicat.cc/tags/Socket/"/>
     
   </entry>
   

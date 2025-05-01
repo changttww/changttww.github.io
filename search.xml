@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>区块链网络通信流程</title>
+      <link href="/posts/blockchain-network-communication.html"/>
+      <url>/posts/blockchain-network-communication.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="接收方处理流程">接收方处理流程</h2><h3 id="服务启动">服务启动</h3><p>调用startserver</p><h3 id="Version消息处理">Version消息处理</h3><p>处理handleVersion：</p><ul><li>若自身慢了，则请求获取块</li><li>若自身快了，则发version给对方</li><li>注：发送version是用来请求同步的</li></ul><h3 id="Inv消息处理">Inv消息处理</h3><p>处理handleInv：</p><ul><li>inv只是一个清单，表示自己有什么块和tx</li><li>收到发送方的inv之后自己判断哪些是要下载的</li><li>然后调用getData执行下载</li></ul><h3 id="Block消息处理">Block消息处理</h3><p>处理handleBlock：</p><ul><li>把新增的区块加到自身链里</li></ul><h3 id="交易处理">交易处理</h3><p>处理handleTx</p><h2 id="发送方处理流程">发送方处理流程</h2><h3 id="服务启动-2">服务启动</h3><p>调用startserver</p><h3 id="区块请求处理">区块请求处理</h3><p>处理handleGetBlock</p><h3 id="数据请求处理">数据请求处理</h3><p>处理getData</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 区块链技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 区块链 </tag>
+            
+            <tag> P2P网络 </tag>
+            
+            <tag> 网络通信 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>区块链网络架构</title>
       <link href="/posts/blockchain-network.html"/>
       <url>/posts/blockchain-network.html</url>
