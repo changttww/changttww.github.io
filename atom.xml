@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-01T13:03:27.000Z</updated>
+  <updated>2025-05-01T13:12:37.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,81 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>区块链流程图3 交易系统实现</title>
+    <link href="https://www.magicat.cc/posts/blockchain-transaction-system.html"/>
+    <id>https://www.magicat.cc/posts/blockchain-transaction-system.html</id>
+    <published>2025-05-01T13:12:37.000Z</published>
+    <updated>2025-05-01T13:12:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="交易结构设计">交易结构设计</h2><h3 id="TXInput结构">TXInput结构</h3><ul><li>引用的输出索引(在vec中的位置)</li><li>解锁脚本（这里简化为自身公钥）</li><li>如果我的地址和输出索引的锁定脚本一样，证明我可以用这笔钱</li></ul><h3 id="TXOutput结构">TXOutput结构</h3><ul><li>每个output索引为vec中的位置</li><li>币的数量</li><li>锁定脚本（发送方公钥）</li><li>表示谁有资格使用这笔钱(我发给谁了)</li><li><img src="https://cdn-a.markji.com/files/68137352e895986c474ac32e_hd.png?e=1746107762858&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:lULgq0qdO5GNjMfcBF0HfbbVt70=" alt=""></li></ul><h3 id="Transaction结构">Transaction结构</h3><p>成员：</p><ul><li>Vec<TXOutput></li><li>Vec<TXInput></li><li>id</li></ul><p>方法：</p><h4 id="new-UTXO">new_UTXO</h4><ul><li>find_spendable_outputs(blockchain函数)</li><li>找到需要使用的vec<input>证明我可以使用这些钱</li><li>把全部的utxo都拿出来了，拼成input(证实自己有动用这笔钱权力)</li><li>把全部余额合并成一个output，发出去</li><li>计算要找回多少钱，发一份给自身</li><li>最后把vin和vout拼接成Transaction返回’</li><li><img src="https://cdn-a.markji.com/files/6813735ce895986c474ad1db_hd.png?e=1746107772788&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:NHHW1KSbXeX45LTwMGNLFscJViY=" alt=""></li></ul><h4 id="new-coinbase">new_coinbase</h4><ul><li>直接生成一个tx</li><li>input里的解锁脚本和out索引都没有，因为不需要证明就可以用(新块)</li><li>拼接output然后返回tx</li></ul><h4 id="is-coinbase">is_coinbase</h4><ul><li>就判断当前tx是否只有一个input啥的就行</li></ul><h2 id="Block结构修改">Block结构修改</h2><h3 id="数据结构">数据结构</h3><ul><li>把data字段换成了Vec<Transaction></li></ul><h3 id="方法实现">方法实现</h3><h4 id="prepare-hash-data">prepare_hash_data</h4><ul><li>把待哈希内容序列化</li><li>注：由于时间戳一开始就被计算出来，故并不是挖矿成功的时间戳</li></ul><h4 id="validate">validate</h4><ul><li>调用prepare获取数据</li><li>注：每次要重新调用prepare是因为nonce每次都变化了</li><li>判断是否哈希值符合要求</li></ul><h4 id="run-proof-of-work">run_proof_of_work</h4><ul><li>循环调用validata</li><li>每次把nonce+1，成功了则把self.hash赋值</li></ul><h4 id="new-block">new_block</h4><ul><li>获取当前时间戳</li><li>新创建block，赋值好前哈希，Vec<Transaction>，时间戳</li><li>调用run_proof赋值哈希</li></ul><h4 id="new-genesis-block">new_genesis_block</h4><ul><li>直接生成</li></ul><h2 id="Blockchain结构优化">Blockchain结构优化</h2><h3 id="成员变量">成员变量</h3><ul><li>继续删除currentHash，转移到迭代器里面</li><li>tip最新区块的哈希值</li><li>db</li></ul><h3 id="方法实现-2">方法实现</h3><h4 id="new-构造函数">new()构造函数</h4><ul><li>返回blockchain</li><li>打开db</li><li>调用get(“last”)查询<ul><li>last为存储的最后一个哈希值</li><li>若不存在：?表示式报错返回</li><li>若存在：把tip和db都赋值后返回</li></ul></li></ul><h4 id="create-blockchain">create_blockchain</h4><ul><li>调用生成创世交易函数</li><li>把tx传入生成创世块函数，生成创世块</li><li>把创世块信息等insert进数据库</li></ul><h4 id="find-spendable-outputs">find_spendable_outputs</h4><ul><li>在区块链中查找发送者可用的未花费输出</li><li>返回元组(总金额, 可用输出的map)</li></ul><h4 id="find-UTXO">find_UTXO</h4><ul><li>把find_unspent_transactions的返回的tx提纯</li><li>直接返回UTXO</li></ul><h4 id="find-unspent-transactions">find_unspent_transactions</h4><ul><li>获取包含自身地址的所有未花费的输出</li><li>从新往旧遍历区块链</li><li>先把vout判断是否被vin引用了</li><li>再把当前块的vin引用的vout注册进哈希</li></ul><h4 id="find-spendable-outputs-2">find_spendable_outputs</h4><ul><li>查找可用于支付指定金额的输出</li><li>调用find_unspent</li><li>遍历所有的tx中的output，然后不断加accumulated</li><li>够了就返回积累值和对应的output</li></ul><h4 id="mine-block（原add-block）">mine_block（原add_block）</h4><ul><li>从last获取新块的前哈希</li><li>调用new_block(data, prev.get_hash())</li><li>每个块都是一个键值对存储key为hash，value是块的序列化</li><li>插入db，并更新last和tip和curretHash</li></ul><h4 id="Iterator">Iterator</h4><ul><li>next<ul><li>调用currentHash来get块</li><li>返回这个块，并且把curretHash赋值为前hash</li></ul></li></ul><h2 id="CLI改进">CLI改进</h2><h3 id="结构修改">结构修改</h3><ul><li>删除了blockchain成员</li></ul><h3 id="命令实现">命令实现</h3><p>run：</p><ul><li>注册命令行app</li><li>判断是否输入了对应命令<ul><li>删除了addblock/换成send</li><li>执行print_chain</li><li>getbalance：调用find_UTXO之后遍历相加</li><li>createblockchain：调用create_blockchain</li><li>send：<ul><li>解析from,to,amount</li><li>调用new_UTXO生成交易信息</li><li>调用mine_block生成区块</li></ul></li></ul></li></ul><h2 id="主程序实现">主程序实现</h2><p><a href="http://main.rs">main.rs</a>：</p><ul><li>初始化日志系统</li><li>创建cli</li><li>调用run</li></ul>]]></content>
+    
+    
+    <summary type="html">Rust实现区块链交易系统的详细设计与实现流程</summary>
+    
+    
+    
+    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="Rust" scheme="https://www.magicat.cc/tags/Rust/"/>
+    
+    <category term="交易系统" scheme="https://www.magicat.cc/tags/%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>区块链流程图2 命令行实现</title>
+    <link href="https://www.magicat.cc/posts/blockchain-cli.html"/>
+    <id>https://www.magicat.cc/posts/blockchain-cli.html</id>
+    <published>2025-05-01T13:10:37.000Z</published>
+    <updated>2025-05-01T13:10:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Block结构实现">Block结构实现</h2><h3 id="数据准备">数据准备</h3><p>prepare_hash_data：</p><ul><li>把待哈希内容序列化</li><li>注：由于时间戳一开始就被计算出来，故并不是挖矿成功的时间戳</li></ul><h3 id="验证机制">验证机制</h3><p>validate：</p><ul><li>调用prepare获取数据</li><li>注：每次要重新调用prepare是因为nonce每次都变化了</li><li>判断是否哈希值符合要求</li></ul><h3 id="工作量证明执行">工作量证明执行</h3><p>run_proof_of_work：</p><ul><li>循环调用validata</li><li>每次把nonce+1，成功了则把self.hash赋值</li></ul><h3 id="区块创建">区块创建</h3><p>new_block：</p><ul><li>获取当前时间戳</li><li>新创建block，赋值好前哈希，data，时间戳</li><li>调用run_proof赋值哈希</li></ul><h3 id="创世块生成">创世块生成</h3><p>new_genesis_block：</p><ul><li>直接生成</li></ul><h2 id="Blockchain结构实现">Blockchain结构实现</h2><h3 id="成员变量">成员变量</h3><ul><li>删除blockchains</li><li>tip最新区块的哈希值</li><li>db</li><li>currentHash（用于迭代器）当前哈希</li><li>从尾到头部返回</li></ul><h3 id="构造函数">构造函数</h3><p>new()：</p><ul><li>返回blockchain</li><li>打开db</li><li>调用get(“last”)查询<ul><li>last为存储的最后一个哈希值</li><li>若不存在<ul><li>创建创世块并insert</li><li>为last字段也insert赋值</li><li>初始化blockchain并flush返回</li></ul></li><li>若存在<ul><li>把tip和currentHash都赋值为这个哈希</li><li>赋值db之后返回</li></ul></li></ul></li></ul><h3 id="区块添加">区块添加</h3><p>add_block：</p><ul><li>从last获取新块的前哈希</li><li>调用new_block(data, prev.get_hash())</li><li>每个块都是一个键值对存储key为hash，value是块的序列化</li><li>插入db，并更新last和tip和curretHash</li></ul><h3 id="迭代器实现">迭代器实现</h3><p>Iterator：</p><ul><li>next<ul><li>调用currentHash来get块</li><li>返回这个块，并且把curretHash赋值为前hash</li></ul></li></ul><h2 id="CLI实现">CLI实现</h2><h3 id="结构定义">结构定义</h3><ul><li>就一个blockchain成员</li></ul><h3 id="初始化">初始化</h3><p>new：</p><ul><li>调用blockchain构造函数</li></ul><h3 id="命令行运行">命令行运行</h3><p>run：</p><ul><li>注册命令行app</li><li>判断是否输入了对应命令<ul><li>执行addblock</li><li>执行print_chain</li></ul></li></ul><h2 id="主程序实现">主程序实现</h2><p><a href="http://main.rs">main.rs</a>：</p><ul><li>初始化日志系统</li><li>创建cli</li><li>调用run</li></ul>]]></content>
+    
+    
+    <summary type="html">Rust实现区块链命令行接口及数据持久化的详细流程</summary>
+    
+    
+    
+    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="Rust" scheme="https://www.magicat.cc/tags/Rust/"/>
+    
+    <category term="CLI" scheme="https://www.magicat.cc/tags/CLI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>区块链流程图1 工作量证明</title>
+    <link href="https://www.magicat.cc/posts/blockchain-pow.html"/>
+    <id>https://www.magicat.cc/posts/blockchain-pow.html</id>
+    <published>2025-05-01T13:04:37.000Z</published>
+    <updated>2025-05-01T13:04:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Block结构实现">Block结构实现</h2><h3 id="数据准备">数据准备</h3><p>prepare_hash_data：</p><ul><li>把待哈希内容序列化</li><li>注：由于时间戳一开始就被计算出来，故并不是挖矿成功的时间戳</li></ul><h3 id="验证机制">验证机制</h3><p>validate：</p><ul><li>没检查溢出情况</li><li>调用prepare获取数据</li><li>注：每次要重新调用prepare是因为nonce每次都变化了</li><li>判断是否哈希值符合要求</li></ul><h3 id="工作量证明执行">工作量证明执行</h3><p>run_proof_of_work：</p><ul><li>循环调用validata</li><li>每次把nonce+1，成功了则把self.hash赋值</li></ul><h3 id="区块创建">区块创建</h3><p>new_block：</p><ul><li>获取当前时间戳</li><li>新创建block，赋值好前哈希，data，时间戳</li><li>调用run_proof赋值哈希</li></ul><h3 id="创世块生成">创世块生成</h3><p>new_genesis_block：</p><ul><li>直接生成</li></ul><h2 id="Blockchain结构实现">Blockchain结构实现</h2><h3 id="初始化">初始化</h3><p>new()：</p><ul><li>调用生成创世块</li></ul><h3 id="区块添加">区块添加</h3><p>add_block：</p><ul><li>从vec尾部获取新块的前哈希</li><li>调用new_block(data, prev.get_hash())</li></ul><h2 id="主程序实现">主程序实现</h2><p><a href="http://main.rs">main.rs</a>：</p><ul><li>创建区块链Blockchain::new()</li><li>调用add_block然后传入data</li><li>bc.add_block(String::from(“Send 1 BTC to Ivan”))</li></ul><p>注意：没检查溢出情况</p>]]></content>
+    
+    
+    <summary type="html">Rust实现区块链工作量证明机制的详细流程</summary>
+    
+    
+    
+    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="Rust" scheme="https://www.magicat.cc/tags/Rust/"/>
+    
+    <category term="工作量证明" scheme="https://www.magicat.cc/tags/%E5%B7%A5%E4%BD%9C%E9%87%8F%E8%AF%81%E6%98%8E/"/>
+    
+  </entry>
   
   <entry>
     <title>区块链网络通信流程</title>
@@ -414,77 +489,6 @@
     <category term="音视频开发" scheme="https://www.magicat.cc/tags/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/"/>
     
     <category term="FFmpeg" scheme="https://www.magicat.cc/tags/FFmpeg/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>视频软解码流程2 read函数</title>
-    <link href="https://www.magicat.cc/posts/video-decoding-image-conversion.html"/>
-    <id>https://www.magicat.cc/posts/video-decoding-image-conversion.html</id>
-    <published>2025-04-12T06:43:01.000Z</published>
-    <updated>2025-04-12T06:48:06.238Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="视频解码流程"><a href="#视频解码流程" class="headerlink" title="视频解码流程"></a>视频解码流程</h2><p>read函数，返回Qimage<br>完成解码：原始数据包-&gt;发送给解码器上下文-&gt;解码后视频帧<br>首先从解封装上下文读取原始数据帧进packet数据包<br>把数据包发送给解码器上下文有两种情况，<br>一种是读取已完成发空数据包，一种是正常传原始数据包<br>如果不是空包，就涉及将pts和dts由时间戳转换为毫秒单位，再发送给解码器<br><img src="https://cdn-a.markji.com/files/67f8c678eb27578088b65e94_hd.png?e=1744442663818&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Taa51o3pQhJ6ZMe-WoYo-TZNn9c=" alt=""></p><h2 id="图像格式转换"><a href="#图像格式转换" class="headerlink" title="图像格式转换"></a>图像格式转换</h2><p>图像转换上下文-&gt;进行转换-&gt;最后转成QImage<br>必须在解码后才能初始化图像转换上下文，硬解码时图像格式会发生改变，因此只有解码后才能安全进行图像转换<br>初始化的api需要传入图像输入输出的分辨率、缩放算法（比如YUV和RGB）、滤波器信息（可以null），返回初始化后的图像转换上下文<br>api的逻辑是获取缓存的图像转换上下文。首先校验上述参数是否一致，如果校验不通过就释放资源；然后判断上下文是否存在，如果存在直接复用，如不存在进行分配、初始化操作。<br>这里得到YUV到RGB的图像格式转换上下文，将转换好的图像格式存入_swsContext图像转换上下文<br><img src="https://cdn-a.markji.com/files/67f8cf93eb27578088b7ff1c_hd.png?e=1744442663818&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:GEULwilbn1spi7mHPJKWc8MUk-E=" alt=""></p><h2 id="图像平面与步幅"><a href="#图像平面与步幅" class="headerlink" title="图像平面与步幅"></a>图像平面与步幅</h2><p>然后利用这个上下文进行图像转换，需要输入输出存放每个平面指针的data数组，存放每平面步幅的lines数组，额外输入第几行开始处理，总共处理多少行<br>图像平面指的是图像中某一个颜色通道的所有像素数据组成的二维区域，每个颜色通道的数据单独存储在一块连续的内存中，这块内存就叫做一个”平面”。<br>RGB所有颜色连续存储，只有一个平面；YUV 图像的 Y、U、V 分量是分开存储的，分别在不同的内存区域，有Y、U、V三个平面<br>步幅就是每平面每行的字节数，每个图像平面中，一行像素数据实际占用的内存字节数<br><img src="https://cdn-a.markji.com/files/67f8d22deb27578088b86bd2_hd.png?e=1744442663818&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:QTtAl-ft4t4D4lsiNmZDLx1MOP4=" alt=""><br><img src="https://cdn-a.markji.com/files/67f8d255eb27578088b86f7d_hd.png?e=1744442663818&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:bOtyow_hAbdSLOhA9VDDMNmKtiQ=" alt=""></p><h2 id="转换为Qt图像"><a href="#转换为Qt图像" class="headerlink" title="转换为Qt图像"></a>转换为Qt图像</h2><p>图像转换完成后m_frame解码后的视频帧里存的就是rgb格式<br>可以直接转化成QImage格式</p>]]></content>
-    
-    
-    <summary type="html">视频解码过程及图像格式转换实现</summary>
-    
-    
-    
-    <category term="多媒体技术" scheme="https://www.magicat.cc/categories/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="音视频开发" scheme="https://www.magicat.cc/tags/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="FFmpeg" scheme="https://www.magicat.cc/tags/FFmpeg/"/>
-    
-    <category term="Qt" scheme="https://www.magicat.cc/tags/Qt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>视频软解码流程1 open函数</title>
-    <link href="https://www.magicat.cc/posts/video-decoding-process.html"/>
-    <id>https://www.magicat.cc/posts/video-decoding-process.html</id>
-    <published>2025-04-10T15:24:24.000Z</published>
-    <updated>2025-04-12T06:48:28.661Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="视频文件打开流程"><a href="#视频文件打开流程" class="headerlink" title="视频文件打开流程"></a>视频文件打开流程</h2><p>先丢一个流程图<br><img src="https://cdn-a.markji.com/files/67f78cddeb2757808894e0e1_hd.png?e=1744301131161&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:s0q3evngz3sBOf5b2kXXODt_qq8=" alt=""></p><p>open函数，需要传入url，返回bool是否成功打开</p><p>在打开输入流之前先定义了参数字典，通过这个字典和传入的url打开输入流<br><img src="https://cdn-a.markji.com/files/67f78e1fc7682418c3f4421b_hd.png?e=1744301131161&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Dt1o-dsDVm9-XdUPUEw6a4Q9iyw=" alt=""></p><h2 id="解封装过程"><a href="#解封装过程" class="headerlink" title="解封装过程"></a>解封装过程</h2><h3 id="解封装上下文-gt-视频流"><a href="#解封装上下文-gt-视频流" class="headerlink" title="解封装上下文-&gt;视频流"></a>解封装上下文-&gt;视频流</h3><p>打开输入流，返回解封装上下文</p><p>通过解封装上下文读取媒体信息，顺带得到视频总时长</p><p>再通过解封装上下文和AVMEDIA_TYPE_VIDEO枚举视频流ID</p><p>就能在解封装上下文中根据视频流ID获取视频流</p><h2 id="解码过程"><a href="#解码过程" class="headerlink" title="解码过程"></a>解码过程</h2><h3 id="视频流-gt-解码器-gt-解码器上下文-gt-打开解码器"><a href="#视频流-gt-解码器-gt-解码器上下文-gt-打开解码器" class="headerlink" title="视频流-&gt;解码器-&gt;解码器上下文-&gt;打开解码器"></a>视频流-&gt;解码器-&gt;解码器上下文-&gt;打开解码器</h3><p>videoStream-&gt;codecpar 是一个 AVCodecParameters*，它保存了解封装后提取出的流的编解码参数，是解封装阶段从媒体中提取出来的参数集合</p><p>AVFormatContext（解封装）和 AVCodecContext（解码）是两个阶段，前面只是解封装了，但并没有解码</p><p>通过视频流里的codecpar参数集合找到视频分辨率（长和宽）和总帧率，</p><p>直接从视频流获取视频帧率，但涉及分数（AVRational）到小数（qreal）的转换<br><img src="https://cdn-a.markji.com/files/67f79832c7682418c3f5dd50_hd.png?e=1744301131161&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:ut8gL7ppfd-jSR-kFM4yeGCMT2w=" alt=""></p><h2 id="解码器配置"><a href="#解码器配置" class="headerlink" title="解码器配置"></a>解码器配置</h2><p>再通过视频流里的codecpar参数集合中的codec-&gt;id 解码器ID获取视频解码器</p><p>通过解码器获取解码器上下文</p><p>然后使用视频流的codecpar为解码器上下文赋值，再使用赋值后的解码器上下文打开解码器</p><h2 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h2><p>最后提前分配AVPacket数据包和AVFrame解码后的视频帧的空间</p><p>根据之前得到的图像分辨率，计算图像所需内存大小，然后按计算得到的大小分配图像数据空间</p>]]></content>
-    
-    
-    <summary type="html">视频文件的打开、解封装和解码流程</summary>
-    
-    
-    
-    <category term="多媒体技术" scheme="https://www.magicat.cc/categories/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="音视频开发" scheme="https://www.magicat.cc/tags/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="FFmpeg" scheme="https://www.magicat.cc/tags/FFmpeg/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类型转换与继承</title>
-    <link href="https://www.magicat.cc/posts/type-conversion-inheritance.html"/>
-    <id>https://www.magicat.cc/posts/type-conversion-inheritance.html</id>
-    <published>2025-04-01T15:26:37.000Z</published>
-    <updated>2025-04-01T15:26:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="基类与派生类的类型转换">基类与派生类的类型转换</h2><p>可以将基类指针/引用绑定到派生类对象上。也就是可以把派生类对象当成基类对象使用（需要传基类对象的参数也可以传派生类对象），但不能将基类转换成派生类。</p><h2 id="静态类型与动态类型">静态类型与动态类型</h2><ul><li><strong>静态类型</strong>：变量或表达式在编译时确定的类型，由声明决定。代码写下时，编译器就能知道其静态类型。</li><li><strong>动态类型</strong>：变量或表达式在运行时所表示的对象的实际类型。只有当程序运行时，才知道变量指向的具体对象是什么。</li></ul><p>基类指针或引用可以指向派生类对象，此时，静态类型仍然是基类类型，动态类型则是运行时绑定的派生类类型。即该指针或引用只能访问基类的成员，其中非虚函数调用的是基类的版本，虚函数会动态绑定到派生类定义的版本。<br><img src="https://cdn-a.markji.com/files/67eb4702205d5713c0ce74ea_hd.png?e=1743524964854&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:vwFkjPk-l3HiRHflk6XZOw57uME=" alt=""></p><h2 id="对象赋值的特殊情况">对象赋值的特殊情况</h2><p>如果是直接将派生类对象赋值给基类，仅保留基类部分，派生类的成员被丢弃。之后，该对象的动态类型就变成了基类。<br><img src="https://cdn-a.markji.com/files/67eb464d205d5713c0ce5701_hd.png?e=1743524964854&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:ohIN6Rl1fDacWGV75YvGo6dYIZI=" alt=""></p>]]></content>
-    
-    
-    <summary type="html">C++中类型转换与继承的关系及静态类型与动态类型的区别</summary>
-    
-    
-    
-    <category term="编程语言" scheme="https://www.magicat.cc/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
   </entry>
   
