@@ -749,6 +749,35 @@
     
     
     <entry>
+      <title>对象移动</title>
+      <link href="/posts/cpp-move-semantics.html"/>
+      <url>/posts/cpp-move-semantics.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="右值引用基础">右值引用基础</h2><p>在重新分配内存的过程中，旧元素已经不再需要，移动元素到新内存是更合适的方法右值引用。</p><p>必须绑定到右值，返回得到的结果也是左值(int&amp;&amp;r2,这个r2是左值）。</p><p>std::move(a);可以将左值对象a强行转化成右值，不提供using声明，不要省略std。</p><p><img src="https://cdn-a.markji.com/files/67da6fc1b49cc95a6c2b946f_hd.png?e=1746194737641&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:AC33w0UsbCQc_Jo4lNJa7kYoHJw=" alt=""></p><h2 id="移动语义">移动语义</h2><p>因为右值即将被销毁，所以可以自由的将所引用的资源移动到另一个对象。</p><h3 id="移动构造函数和赋值运算符">移动构造函数和赋值运算符</h3><p><img src="https://cdn-a.markji.com/files/67da71b276d0a5611b8162b2_hd.png?e=1746194737641&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:RQL4L2TzyEQU4oYFNYGVhbAbUeY=" alt=""><br><img src="https://cdn-a.markji.com/files/67da72ce76d0a5611b818bc9_hd.png?e=1746194737641&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rD8Da2HI0cLzBQ1oJeeliDIxzC4=" alt=""></p><p>只有所有函数成员都可移动时，编译器才会生成合成构造函数，否则强行用=default合成构造函数，编译器会再帮你delete掉。</p><p>如果只定义了拷贝构造函数，又传入右值给构造函数，不会合成移动构造而是也用拷贝构造。</p><h2 id="引用限定符">引用限定符</h2><h3 id="成员函数的引用限定符">成员函数的引用限定符</h3><p><img src="https://cdn-a.markji.com/files/67da7a1fb49cc95a6c2d6433_hd.png?e=1746194737641&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:6okYTxy99hjok07BcpZKwGVvEYY=" alt=""></p><p>如果一个成员函数加了引用限定符，具有相同参数列表的所有版本都要有引用限定符（常见于多版本构造函数）。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 右值引用 </tag>
+            
+            <tag> 移动语义 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown语法与外挂标签写法汇总</title>
       <link href="/posts/2013454d.html"/>
       <url>/posts/2013454d.html</url>
