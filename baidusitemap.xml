@@ -110,7 +110,19 @@
   </url>
   <url>
     <loc>https://www.magicat.cc/posts/cpp-move-semantics.html</loc>
-    <lastmod>2025-02-10</lastmod>
+    <lastmod>2025-02-20</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/cpp-copy-control.html</loc>
+    <lastmod>2025-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/cpp-special-member-functions.html</loc>
+    <lastmod>2025-01-10</lastmod>
+  </url>
+  <url>
+    <loc>https://www.magicat.cc/posts/cpp-three-five-rule.html</loc>
+    <lastmod>2025-01-03</lastmod>
   </url>
   <url>
     <loc>https://www.magicat.cc/posts/2013454d.html</loc>
