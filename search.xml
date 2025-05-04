@@ -863,6 +863,35 @@
     
     
     <entry>
+      <title>内存分配器</title>
+      <link href="/posts/cpp-allocator.html"/>
+      <url>/posts/cpp-allocator.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="new-delete的局限性">new/delete的局限性</h2><p>new既分配内存又调用构造函数创建对象，delete既释放内存又调用析构函数。<br>不适合只想分配内存暂时不想创建对象的场景。</p><h2 id="allocator的优势">allocator的优势</h2><p>allocator则是只分配原始内存，后续用construct手动调用构造函数。<br>deallocate只销毁内存，要提前用destroy调用析构函数。<br><img src="https://cdn-a.markji.com/files/67ce5eac421df9d8b16641cf_hd.png?e=1746373774401&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:oI7keMpKDqf2IBKSL1_UvV81BmY=" alt=""><br>allocator对象是为<T>类型对象动态分配内存的工具。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 内存管理 </tag>
+            
+            <tag> allocator </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown语法与外挂标签写法汇总</title>
       <link href="/posts/2013454d.html"/>
       <url>/posts/2013454d.html</url>
