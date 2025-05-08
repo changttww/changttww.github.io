@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title>内存分配</title>
-      <link href="/posts/d5b66195.html"/>
-      <url>/posts/d5b66195.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>区块链流程图3 交易系统实现</title>
       <link href="/posts/blockchain-transaction-system.html"/>
       <url>/posts/blockchain-transaction-system.html</url>
@@ -938,7 +925,7 @@
       <link href="/posts/cpp-unique-weak-ptr.html"/>
       <url>/posts/cpp-unique-weak-ptr.html</url>
       
-        <content type="html"><![CDATA[<h2 id="unique-ptr特性"><a href="#unique-ptr特性" class="headerlink" title="unique_ptr特性"></a>unique_ptr特性</h2><p><img src="https://cdn-a.markji.com/files/67ce3a1afebb18c8e757637c_hd.png?e=1746542895339&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:AQwBCL6SNQ6Hog3qKtgYYDmnjTg=" alt=""></p><p>一般不能被拷贝，但可以拷贝/赋值一个将要被销毁的unique_ptr，比如return。</p><h2 id="weak-ptr特性"><a href="#weak-ptr特性" class="headerlink" title="weak_ptr特性"></a>weak_ptr特性</h2><p>绑定到shared_ptr但不会改变引用计数。<br><img src="https://cdn-a.markji.com/files/67ce3a1afebb18c8e757637c_hd.png?e=1746542895339&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:AQwBCL6SNQ6Hog3qKtgYYDmnjTg=" alt=""></p><h3 id="使用检查"><a href="#使用检查" class="headerlink" title="使用检查"></a>使用检查</h3><p>使用前先用lock检查对象是否存在：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(shared_ptr&lt;<span class="type">int</span>&gt;np = wp.<span class="built_in">lock</span>())</span><br></pre></td></tr></table></figure></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="unique-ptr特性">unique_ptr特性</h2><p><img src="https://cdn-a.markji.com/files/67ce3a1afebb18c8e757637c_hd.png?e=1746542895339&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:AQwBCL6SNQ6Hog3qKtgYYDmnjTg=" alt=""></p><p>一般不能被拷贝，但可以拷贝/赋值一个将要被销毁的unique_ptr，比如return。</p><h2 id="weak-ptr特性">weak_ptr特性</h2><p>绑定到shared_ptr但不会改变引用计数。<br><img src="https://cdn-a.markji.com/files/67ce3a1afebb18c8e757637c_hd.png?e=1746542895339&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:AQwBCL6SNQ6Hog3qKtgYYDmnjTg=" alt=""></p><h3 id="使用检查">使用检查</h3><p>使用前先用lock检查对象是否存在：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(shared_ptr&lt;<span class="type">int</span>&gt;np = wp.<span class="built_in">lock</span>())</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -984,6 +971,62 @@
             <tag> 内存管理 </tag>
             
             <tag> 智能指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C++内存分配方式</title>
+      <link href="/posts/cpp-memory-allocation.html"/>
+      <url>/posts/cpp-memory-allocation.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="普通内存分配">普通内存分配</h2><h3 id="直接创建对象">直接创建对象</h3><h3 id="对象生命周期">对象生命周期</h3><ul><li>局部普通对象在进出程序块时创建和销毁</li><li>局部静态对象在第一次使用时分配，程序结束时销毁</li></ul><h2 id="静态内存">静态内存</h2><h3 id="静态变量类型">静态变量类型</h3><ul><li>局部static（类里的static成员）</li><li>全局变量</li></ul><h2 id="栈内存">栈内存</h2><h3 id="栈内存特点">栈内存特点</h3><ul><li>局部非static变量（普通类成员）</li><li>栈内存比较小</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 内存管理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C++动态内存管理</title>
+      <link href="/posts/cpp-dynamic-memory.html"/>
+      <url>/posts/cpp-dynamic-memory.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="动态内存分配基础">动态内存分配基础</h2><h3 id="new操作符">new操作符</h3><p>new返回一个指向该对象的指针，分配一块内存：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p = <span class="keyword">new</span> <span class="type">int</span>;</span><br></pre></td></tr></table></figure><p>new出来的对象会默认初始化，未初始化时内置类型的值未定义，类对象用默认构造函数初始化。</p><h3 id="直接初始化">直接初始化</h3><p>用圆括号或者花括号：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *pi = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">1024</span>)</span><br></pre></td></tr></table></figure><h3 id="值初始化">值初始化</h3><p>在类型名后面跟一对圆括号，可以避免默认初始化时内置类型的值未定义：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *pi2 = <span class="keyword">new</span> <span class="built_in">int</span>();</span><br></pre></td></tr></table></figure><h3 id="auto推断">auto推断</h3><p>用auto从初始化器推断我们想要分配的对象的类型，但括号内只能有单个初始化器。<br><img src="https://cdn-a.markji.com/files/67c5256c4fd8a653feaaaa15_hd.png?e=1746721173477&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:gWaM2XI1THg7dLav-GA9SVBJft4=" alt=""></p><h3 id="内存耗尽处理">内存耗尽处理</h3><p>默认会抛出back_alloc异常，但可以使用定位new来阻止抛出异常。<br><img src="https://cdn-a.markji.com/files/67c525fb4fd8a653feaaf5ce_hd.png?e=1746721173478&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:43m-nnkWt-Ts5wzDY4f8-Kl4JHc=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 内存管理 </tag>
+            
+            <tag> new/delete </tag>
             
         </tags>
       
