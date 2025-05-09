@@ -979,11 +979,11 @@
     
     
     <entry>
-      <title>C++内存分配方式</title>
-      <link href="/posts/cpp-memory-allocation.html"/>
-      <url>/posts/cpp-memory-allocation.html</url>
+      <title>delete表达式</title>
+      <link href="/posts/cpp-delete.html"/>
+      <url>/posts/cpp-delete.html</url>
       
-        <content type="html"><![CDATA[<h2 id="普通内存分配">普通内存分配</h2><h3 id="直接创建对象">直接创建对象</h3><h3 id="对象生命周期">对象生命周期</h3><ul><li>局部普通对象在进出程序块时创建和销毁</li><li>局部静态对象在第一次使用时分配，程序结束时销毁</li></ul><h2 id="静态内存">静态内存</h2><h3 id="静态变量类型">静态变量类型</h3><ul><li>局部static（类里的static成员）</li><li>全局变量</li></ul><h2 id="栈内存">栈内存</h2><h3 id="栈内存特点">栈内存特点</h3><ul><li>局部非static变量（普通类成员）</li><li>栈内存比较小</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="delete基本操作">delete基本操作</h2><p>delete接受一个指针，销毁指针指向的对象，释放对应内存。</p><h2 id="使用限制">使用限制</h2><ul><li>传递给delete的指针必须指向动态分配的内存或者空指针，delete一块普通分配的内存会未定义</li><li>const对象也可以被正常销毁</li></ul><h2 id="空悬指针问题">空悬指针问题</h2><p>delete之后指针会变成空悬指针，指向一块曾经保存数据对象但现在无效的内存。<br>空悬指针类似于未定义的指针，是不安全的，需要重置指针。</p>]]></content>
       
       
       <categories>
@@ -998,6 +998,8 @@
             <tag> C++ </tag>
             
             <tag> 内存管理 </tag>
+            
+            <tag> delete </tag>
             
         </tags>
       
@@ -1027,6 +1029,33 @@
             <tag> 内存管理 </tag>
             
             <tag> new/delete </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C++内存分配方式</title>
+      <link href="/posts/cpp-memory-allocation.html"/>
+      <url>/posts/cpp-memory-allocation.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="普通内存分配">普通内存分配</h2><h3 id="直接创建对象">直接创建对象</h3><h3 id="对象生命周期">对象生命周期</h3><ul><li>局部普通对象在进出程序块时创建和销毁</li><li>局部静态对象在第一次使用时分配，程序结束时销毁</li></ul><h2 id="静态内存">静态内存</h2><h3 id="静态变量类型">静态变量类型</h3><ul><li>局部static（类里的static成员）</li><li>全局变量</li></ul><h2 id="栈内存">栈内存</h2><h3 id="栈内存特点">栈内存特点</h3><ul><li>局部非static变量（普通类成员）</li><li>栈内存比较小</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 内存管理 </tag>
             
         </tags>
       
