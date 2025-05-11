@@ -1064,6 +1064,35 @@
     
     
     <entry>
+      <title>函数匹配与重载运算符二义性</title>
+      <link href="/posts/cpp-function-matching-ambiguity.html"/>
+      <url>/posts/cpp-function-matching-ambiguity.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="重载运算符与函数匹配">重载运算符与函数匹配</h2><p>重载的运算符本质上是重载的函数，因此函数匹配规则同样适用。但是，由于重载运算符在表达式中使用时无法区分是成员函数还是非成员函数，会导致候选函数集的规模变大，进而可能引发二义性。</p><h2 id="二义性情况">二义性情况</h2><p>可能导致二义性的情况：</p><ol><li>运算符既有成员函数版本，也有非成员函数版本<br><img src="https://cdn-a.markji.com/files/67e2107681bdefd1bebd1f5a_hd.png?e=1746954080411&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:4ARcbBboiiLvsEySHBL8fa6iHAU=" alt=""></li><li>既有转换目标是算术类型的类型转换，也有重载运算符<br><img src="https://cdn-a.markji.com/files/67e2109e05df26320826e8f5_hd.png?e=1746954080411&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:bvl_deA0-f-cmqU-4qdotj2X75A=" alt=""></li></ol><h2 id="解决方法">解决方法</h2><p><img src="https://cdn-a.markji.com/files/67e210d981bdefd1bebd2977_hd.png?e=1746954080411&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:eDBjrDFvWe5dmAjfGw0nT9KBBRY=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 函数重载 </tag>
+            
+            <tag> 运算符重载 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown语法与外挂标签写法汇总</title>
       <link href="/posts/2013454d.html"/>
       <url>/posts/2013454d.html</url>
