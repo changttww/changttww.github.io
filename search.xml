@@ -1093,6 +1093,35 @@
     
     
     <entry>
+      <title>避免类型转换二义性</title>
+      <link href="/posts/cpp-avoid-conversion-ambiguity.html"/>
+      <url>/posts/cpp-avoid-conversion-ambiguity.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="类型转换二义性概述"><a href="#类型转换二义性概述" class="headerlink" title="类型转换二义性概述"></a>类型转换二义性概述</h2><p>当类中包含类型转换时，必须确保在类类型和目标类型之间只有唯一的转换方式，否则编译器会不知道该选择哪个转换，导致二义性错误。</p><h2 id="二义性情况"><a href="#二义性情况" class="headerlink" title="二义性情况"></a>二义性情况</h2><h3 id="类间转换二义性"><a href="#类间转换二义性" class="headerlink" title="类间转换二义性"></a>类间转换二义性</h3><p>两个类之间存在相同的类型转换。<br><img src="https://cdn-a.markji.com/files/67e20fe681bdefd1bebd0179_hd.png?e=1746954080411&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:FrMIIPshe8r3SjQ3AXfzkC7NF1E=" alt=""></p><h3 id="算术类型转换二义性"><a href="#算术类型转换二义性" class="headerlink" title="算术类型转换二义性"></a>算术类型转换二义性</h3><p>类定义了多个与算术类型相关的转换。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol><li><p>尽量只提供一个用户定义的类型转换（如operator int() 或 operator double() 选一个）</p></li><li><p>避免多个接受不同算术类型的构造函数（最好只提供 A(double)，避免 A(int) + A(double) 并存）</p></li><li><p>显式调用转换，避免隐式转换带来的二义性问题。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 类型转换 </tag>
+            
+            <tag> 二义性 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown语法与外挂标签写法汇总</title>
       <link href="/posts/2013454d.html"/>
       <url>/posts/2013454d.html</url>
