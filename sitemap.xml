@@ -218,6 +218,15 @@
   </url>
   
   <url>
+    <loc>https://www.magicat.cc/posts/cpp-function-matching-ambiguity.html</loc>
+    
+    <lastmod>2025-03-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.magicat.cc/posts/cpp-avoid-conversion-ambiguity.html</loc>
     
     <lastmod>2025-03-29</lastmod>
@@ -482,15 +491,6 @@
     <loc>https://www.magicat.cc/posts/cpp-memory-allocation.html</loc>
     
     <lastmod>2024-12-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.magicat.cc/posts/cpp-function-matching-ambiguity.html</loc>
-    
-    <lastmod>2024-12-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
