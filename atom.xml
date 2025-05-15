@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-01T13:12:37.000Z</updated>
+  <updated>2025-05-15T15:48:04.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>两数之和</title>
+    <link href="https://www.magicat.cc/posts/leetcode-two-sum.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-two-sum.html</id>
+    <published>2025-05-15T15:48:04.000Z</published>
+    <updated>2025-05-15T15:48:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/68260d18fae6898c0c782ddb_hd.png?e=1747326777192&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:bB8UnaqcvzESiOPfxSYyLCzCv1s=" alt=""></p><h2 id="解法一：暴力枚举">解法一：暴力枚举</h2><p>复杂度n^2，对每个执行枚举。</p><h2 id="解法二：排序双指针">解法二：排序双指针</h2><p>复杂度nlogn，排好序之后用结构体保存初始下标，后从首尾往中间遍历即可。</p><h2 id="解法三：哈希表">解法三：哈希表</h2><p>复杂度n，key是值，value是index，遍历的过程中查找是否存在对应的target-x，没找到就把他加入然后继续找。<br><img src="https://cdn-a.markji.com/files/68260d24fae6898c0c782eaa_hd.png?e=1747326788512&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cW1cbQQwquvKtvVUPNrIz0vxIEQ=" alt=""></p>]]></content>
+    
+    
+    <summary type="html">LeetCode Hot100 两数之和的三种解法详解</summary>
+    
+    
+    
+    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
+    
+    <category term="哈希表" scheme="https://www.magicat.cc/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>区块链流程图3 交易系统实现</title>
@@ -466,29 +491,6 @@
     <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
     
     <category term="Qt" scheme="https://www.magicat.cc/tags/Qt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>视频软解码流程3 close函数</title>
-    <link href="https://www.magicat.cc/posts/video-resource-cleanup.html"/>
-    <id>https://www.magicat.cc/posts/video-resource-cleanup.html</id>
-    <published>2025-04-14T15:16:11.000Z</published>
-    <updated>2026-02-24T15:16:11.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="close函数实现"><a href="#close函数实现" class="headerlink" title="close函数实现"></a>close函数实现</h2><h3 id="1-清空缓存"><a href="#1-清空缓存" class="headerlink" title="1. 清空缓存"></a>1. 清空缓存</h3><p>定义了clear工具函数，要用到两个api：</p><ul><li>avformat_flush传入解封装上下文，刷新解封装上下文的高层读取缓冲区</li><li>avio_flush传入解封装上下文中的pb指针，刷新pb指向的低层io缓冲区<br><img src="https://cdn-a.markji.com/files/67fa253f75151df2bbaeece9_hd.png?e=1745509985100&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:-EYQzh0e8Co_xsijeoaT3CA1P6c=" alt=""></li></ul><h3 id="2-释放内存"><a href="#2-释放内存" class="headerlink" title="2. 释放内存"></a>2. 释放内存</h3><p>定义free工具函数释放ffmpeg对象的内存，再释放普通成员变量的内存。</p><h2 id="其他工具函数"><a href="#其他工具函数" class="headerlink" title="其他工具函数"></a>其他工具函数</h2><p>还有两个辅助工具函数：</p><ul><li>isEnd：返回视频是否读取完成</li><li>pts：返回当前帧的显示时间</li></ul>]]></content>
-    
-    
-    <summary type="html">视频资源释放与缓存清理</summary>
-    
-    
-    
-    <category term="多媒体技术" scheme="https://www.magicat.cc/categories/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="音视频开发" scheme="https://www.magicat.cc/tags/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="FFmpeg" scheme="https://www.magicat.cc/tags/FFmpeg/"/>
     
   </entry>
   

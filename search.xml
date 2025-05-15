@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>两数之和</title>
+      <link href="/posts/leetcode-two-sum.html"/>
+      <url>/posts/leetcode-two-sum.html</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/68260d18fae6898c0c782ddb_hd.png?e=1747326777192&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:bB8UnaqcvzESiOPfxSYyLCzCv1s=" alt=""></p><h2 id="解法一：暴力枚举">解法一：暴力枚举</h2><p>复杂度n^2，对每个执行枚举。</p><h2 id="解法二：排序双指针">解法二：排序双指针</h2><p>复杂度nlogn，排好序之后用结构体保存初始下标，后从首尾往中间遍历即可。</p><h2 id="解法三：哈希表">解法三：哈希表</h2><p>复杂度n，key是值，value是index，遍历的过程中查找是否存在对应的target-x，没找到就把他加入然后继续找。<br><img src="https://cdn-a.markji.com/files/68260d24fae6898c0c782eaa_hd.png?e=1747326788512&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cW1cbQQwquvKtvVUPNrIz0vxIEQ=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 哈希表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>区块链流程图3 交易系统实现</title>
       <link href="/posts/blockchain-transaction-system.html"/>
       <url>/posts/blockchain-transaction-system.html</url>
