@@ -1180,6 +1180,35 @@
     
     
     <entry>
+      <title>map和set容器</title>
+      <link href="/posts/cpp-map-set.html"/>
+      <url>/posts/cpp-map-set.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h2><h1 id="include"><a href="#include" class="headerlink" title="include"></a>include<map></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include"></a>include<set></h1><p>默认不允许重复关键字、按关键字有序保存。</p><h2 id="容器定义"><a href="#容器定义" class="headerlink" title="容器定义"></a>容器定义</h2><p>map<string,string> a = {“a1”,”a2”}, {“b1”,”b2”}, {“c1”,”c2”}; // 多个{key,value}直接值初始化<br>set<string> a’ = {“a”},{“b”},{“c”}; // 多个{key},只有关键字</p><h2 id="关键字特性"><a href="#关键字特性" class="headerlink" title="关键字特性"></a>关键字特性</h2><p>默认用”&lt;”将关键字排序，如果两个关键字等价，那么他们只能共同关联一个关键字。</p><h3 id="关键字类型别名"><a href="#关键字类型别名" class="headerlink" title="关键字类型别名"></a>关键字类型别名</h3><p>set<string>::value_type(key_type) 等价于string类型（关键字类型）<br>map<string,int>:: value_type 等价于一个pair<string,int>类型（关键字和值的pair类）<br>mapp<string,int>:: map_type 等价于 int类型（值的类型）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> STL </tag>
+            
+            <tag> 容器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown语法与外挂标签写法汇总</title>
       <link href="/posts/2013454d.html"/>
       <url>/posts/2013454d.html</url>
