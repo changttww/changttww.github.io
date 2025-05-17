@@ -1180,6 +1180,35 @@
     
     
     <entry>
+      <title>map和set容器操作</title>
+      <link href="/posts/cpp-map-set-operations.html"/>
+      <url>/posts/cpp-map-set-operations.html</url>
+      
+        <content type="html"><![CDATA[<p>声明一个关联容器c，不需要初始化</p><p>1.用迭代器遍历关联容器<br>auto it = c.begin();<br>while(it != c.end() ){<br>cout &lt;&lt; it-&gt;first &lt;&lt; “key”;<br>cout &lt;&lt; it -&gt;seconf &lt;&lt; “value”;<br>++it;<br>}</p><p>2.添加元素<br>c.insert(value_type)<br>c.insert(pair); //直接insert 匹配的pair类型元素<br>c.insert({a,b});<br>c.insert(make_pair(key,value)); //将对应的key和value转化为pair类型后insert<br>c.insert(a.begin(),a.end()); //insert 另一个map迭代器范围内的值<br><img src="https://cdn-a.markji.com/files/673432fa3639b73e3e89df06_hd.png?e=1747496877677&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7wgB_9NBgMMfezgz8DMQz3TzRDQ=" alt=""><br>3.删除元素<br>c.erase(key)<br>c.erase§ // 迭代器p<br>c.erase(b,e) // 迭代器b和e</p><p>4.下标操作（最常用）<br>c[k] = 1; // 如果k不在c中，会先添加后赋值<br>auto it = c[k]; // it的类型是<em>map_type<br>auto it = c.begin(); // it的类型是</em>value_typecx</p><p>这与vector和string有所不同</p><p>5.访问元素<br>c.find(key) 返回指向第一个关键字为k的元素<br>c.count(key) 返回关键词等于k的元素的数量<br><img src="https://cdn-a.markji.com/files/673436bc46f83b19e64aab8b_hd.png?e=1747496877677&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:STZ8L85OmxzOCqsTBdfK0Qa28yg=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> STL </tag>
+            
+            <tag> 容器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>map和set容器</title>
       <link href="/posts/cpp-map-set.html"/>
       <url>/posts/cpp-map-set.html</url>
