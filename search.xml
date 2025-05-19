@@ -1180,6 +1180,35 @@
     
     
     <entry>
+      <title>pair类型</title>
+      <link href="/posts/cpp-pair.html"/>
+      <url>/posts/cpp-pair.html</url>
+      
+        <content type="html"><![CDATA[<p>#include<utility></p><p>pair&lt;T1,T2&gt;p(v1,v2); //值初始化<br>make_pair(v1,v2); // 返回一个用v1和v2初始化的pair<br>p.first/p.second ; // 返回pair中的数据成员</p><p>pair&lt;string,int&gt; process(vector<string> &amp;v){ // 声明一个类型为pair的函数，传入一个vector作为参数<br>if(!v.empty() )<br>return (v.back(), v.back().size() ); // v.back() 的类型是string, v.back().size()的类型是int,正好可以完成pair的初始化<br>return make_pair(v.back(), v.back().size() ); // 与上面等价</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> STL </tag>
+            
+            <tag> pair </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>map和set容器操作</title>
       <link href="/posts/cpp-map-set-operations.html"/>
       <url>/posts/cpp-map-set-operations.html</url>
