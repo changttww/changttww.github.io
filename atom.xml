@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-15T15:52:36.000Z</updated>
+  <updated>2025-05-19T14:45:37.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>相交链表</title>
+    <link href="https://www.magicat.cc/posts/leetcode-intersection-of-two-linked-lists.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-intersection-of-two-linked-lists.html</id>
+    <published>2025-05-19T14:45:37.000Z</published>
+    <updated>2025-05-19T14:45:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/682ca1551a5e20b2c67dab55_hd.png?e=1747757941825&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7_sxcdj8TmQcjyLdtrZnXlE29nE=" alt=""></p><p>ps:因为可能会存在没有相交的点,所以一直往前走,然后回到开头继续的方法会导致死循环(如果一定有焦点是可以的)</p><p>方法1.使用哈希表/集合,先遍历一个链表,把节点存进去,然后遍历另外一个链表查看是否在哈希表中已经存放过了</p><p>方法2.使用栈,先开两个栈,然后遍历一遍把两个链表分别放进栈里,然后一个一个pop找到最后一个还是一样的节点</p>]]></content>
+    
+    
+    <summary type="html">LeetCode Hot100 相交链表的解题思路</summary>
+    
+    
+    
+    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
+    
+    <category term="链表" scheme="https://www.magicat.cc/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>字母异位词分组</title>
@@ -470,29 +495,6 @@
     <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
     
     <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Qt非阻塞延迟实现</title>
-    <link href="https://www.magicat.cc/posts/qt-non-blocking-delay.html"/>
-    <id>https://www.magicat.cc/posts/qt-non-blocking-delay.html</id>
-    <published>2025-04-15T15:23:37.000Z</published>
-    <updated>2025-04-15T15:23:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="QTimer-singleShot简介"><a href="#QTimer-singleShot简介" class="headerlink" title="QTimer::singleShot简介"></a>QTimer::singleShot简介</h2><p><img src="https://cdn-a.markji.com/files/68076cb12d05657363373ede_hd.png?e=1745509985100&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:iFm9_QupELxQqTeUfrVVlBBltxQ=" alt=""></p><h2 id="QEventLoop简介"><a href="#QEventLoop简介" class="headerlink" title="QEventLoop简介"></a>QEventLoop简介</h2><p>QEventLoop 是控制事件循环的类，它在 Qt 程序中管理事件队列，并将事件分发到相应的对象。</p><h2 id="事件循环控制"><a href="#事件循环控制" class="headerlink" title="事件循环控制"></a>事件循环控制</h2><p>exec()函数启动事件循环，等待事件的发生。直到调用 quit() 方法或事件循环结束，程序才会继续执行后面的代码。</p><p>等待的过程是非阻塞的，可以在等待过程中响应其他事件。</p><p>quit() 用于退出事件循环。<br><img src="https://cdn-a.markji.com/files/680775f56092fd692c29d001_hd.png?e=1745509985100&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:mq7ppAE5sdGRE2hcmUV0Qew__TU=" alt=""></p>]]></content>
-    
-    
-    <summary type="html">Qt中使用QEventLoop实现非阻塞延迟的方法详解</summary>
-    
-    
-    
-    <category term="GUI开发" scheme="https://www.magicat.cc/categories/GUI%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="Qt" scheme="https://www.magicat.cc/tags/Qt/"/>
     
   </entry>
   

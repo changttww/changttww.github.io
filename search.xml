@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>相交链表</title>
+      <link href="/posts/leetcode-intersection-of-two-linked-lists.html"/>
+      <url>/posts/leetcode-intersection-of-two-linked-lists.html</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/682ca1551a5e20b2c67dab55_hd.png?e=1747757941825&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7_sxcdj8TmQcjyLdtrZnXlE29nE=" alt=""></p><p>ps:因为可能会存在没有相交的点,所以一直往前走,然后回到开头继续的方法会导致死循环(如果一定有焦点是可以的)</p><p>方法1.使用哈希表/集合,先遍历一个链表,把节点存进去,然后遍历另外一个链表查看是否在哈希表中已经存放过了</p><p>方法2.使用栈,先开两个栈,然后遍历一遍把两个链表分别放进栈里,然后一个一个pop找到最后一个还是一样的节点</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 链表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>字母异位词分组</title>
       <link href="/posts/leetcode-group-anagrams.html"/>
       <url>/posts/leetcode-group-anagrams.html</url>
