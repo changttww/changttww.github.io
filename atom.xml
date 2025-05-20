@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-19T14:45:37.000Z</updated>
+  <updated>2025-05-20T14:50:37.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>反转链表</title>
+    <link href="https://www.magicat.cc/posts/leetcode-reverse-linked-list.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-reverse-linked-list.html</id>
+    <published>2025-05-20T14:50:37.000Z</published>
+    <updated>2025-05-20T14:50:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/682ca1c61a5e20b2c67db51d_hd.png?e=1747758054690&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:5ntoiktP1anoxMcdE7xms180weI=" alt=""></p><p>注意这题是要返回反转后的链表头</p><h2 id="递归解法"><a href="#递归解法" class="headerlink" title="递归解法"></a>递归解法</h2><p>```cpp<br>class Solution {<br>public:<br>    ListNode<em> reverseList(ListNode</em> head) {<br>        if(!head||!head-&gt;next)return head;<br>        auto ret=reverseList(head-&gt;next);<br>        head-&gt;next-&gt;next=head;<br>        head-&gt;next =nullptr;//记得这里要切断指向,不然会相互指着,形成环<br>        return ret;<br>    }<br>};//就是本质上是要处理尾节点的指向要指向空,同时为了处理传进来是空的情况,一开始要同时判断!head才可以</p>]]></content>
+    
+    
+    <summary type="html">LeetCode Hot100 反转链表的递归和迭代解法</summary>
+    
+    
+    
+    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
+    
+    <category term="链表" scheme="https://www.magicat.cc/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>相交链表</title>
@@ -463,29 +488,6 @@
     
     
     <summary type="html">C++中抽象基类的概念及继承中的访问控制详解</summary>
-    
-    
-    
-    <category term="编程语言" scheme="https://www.magicat.cc/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类型转换与虚函数</title>
-    <link href="https://www.magicat.cc/posts/type-conversion-virtual-function.html"/>
-    <id>https://www.magicat.cc/posts/type-conversion-virtual-function.html</id>
-    <published>2025-04-23T14:54:29.000Z</published>
-    <updated>2025-04-23T14:54:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="类型转换与继承">类型转换与继承</h2><p>可以将基类指针/引用绑定到派生类对象上。也就是可以把派生类对象当成基类对象使用（需要传基类对象的参数也可以传派生类对象）但不能将基类转换成派生类。</p><h2 id="静态类型与动态类型">静态类型与动态类型</h2><ul><li><strong>静态类型</strong>：变量或表达式在编译时确定的类型，由声明决定。代码写下时，编译器就能知道其静态类型</li><li><strong>动态类型</strong>：变量或表达式在运行时所表示的对象的实际类型。只有当程序运行时，才知道变量指向的具体对象是什么</li></ul><p>基类指针或引用可以指向派生类对象，此时，静态类型仍然是基类类型，动态类型则是运行时绑定的派生类类型。即该指针或引用只能访问基类的成员，其中非虚函数调用的是基类的版本，虚函数会动态绑定到派生类定义的版本。<br><img src="https://cdn-a.markji.com/files/67eb4702205d5713c0ce74ea_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:xDjxTZGidb8FFlxQqfvMlHX9tFw=" alt=""></p><p>如果是直接将派生类对象赋值给基类，仅保留基类部分，派生类的成员被丢弃。之后，该对象的动态类型就变成了基类。<br><img src="https://cdn-a.markji.com/files/67eb464d205d5713c0ce5701_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Qux9clPeNCQx9tzyd3Y_v054KGg=" alt=""></p><h2 id="虚函数特性">虚函数特性</h2><p>所有虚函数都必须有定义。</p><p>当某个虚函数通过指针或引用调用时，对虚函数的调用在运行时才被解析。</p><h3 id="覆盖规则">覆盖规则</h3><p>如果要在派生类中覆盖继承来的虚函数，形参类型必须完全一致。</p><p>否则名字相同但参数列表不同的函数会成为独立的新函数，而不是覆盖原有的。</p><p>因为声明在内层作用域的函数并不会重载声明在外层作用域的函数，而是隐藏外层的。</p><h3 id="特殊说明符">特殊说明符</h3><ul><li>可以在派生类中使用override标记，此时如果没有覆盖原有的虚函数，编译器会报错</li><li>单独将函数指定为final，之后任何尝试覆盖该函数的操作都会报错</li></ul><h3 id="其他注意事项">其他注意事项</h3><ul><li>虚函数总是使用基类中定义的默认实参</li><li>可以使用作用域运算符规避虚函数的动态绑定<br><img src="https://cdn-a.markji.com/files/67eb4e06205d5713c0cf9775_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:N9gNCJ2GaOGWb7oPsrg_e7l4VVE=" alt=""></li></ul>]]></content>
-    
-    
-    <summary type="html">C++中的类型转换、继承关系以及虚函数的详细解析</summary>
     
     
     
