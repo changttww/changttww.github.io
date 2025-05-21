@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://www.magicat.cc/posts/cpp-throw-exception.html</loc>
+    
+    <lastmod>2025-05-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.magicat.cc/posts/cpp-exception-handling.html</loc>
     
     <lastmod>2025-05-21</lastmod>
@@ -877,6 +886,13 @@
   
   <url>
     <loc>https://www.magicat.cc/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2025-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.magicat.cc/tags/%E6%A0%88%E5%B1%95%E5%BC%80/</loc>
     <lastmod>2025-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

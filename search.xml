@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>抛出异常</title>
+      <link href="/posts/cpp-throw-exception.html"/>
+      <url>/posts/cpp-throw-exception.html</url>
+      
+        <content type="html"><![CDATA[<p>throw抛出异常，后面的语句不再执行，跳转到与之匹配的catch模块</p><p>栈展开就是在程序抛出异常后，沿着函数调用链一层层往回找，找到包住throw语句的try和相匹配的能处理异常的catch代码的过程。如果找到了就处理，找不到就程序崩溃。<br><img src="https://cdn-a.markji.com/files/682be2251a5e20b2c665c915_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rOHx9vc72x-6Y5_Dz-Ww222qUrk=" alt=""></p><p>在栈展开的过程中，调用链上退出的函数中创建的局部对象会被自动销毁。每退出一层函数、一个代码块，里面的局部变量（对象）就会像正常离开作用域一样被销毁。</p><p>析构函数总是会被执行的，但是函数中负责释放资源的代码却可能被跳过，如果一个块分配了资源，并且在负责释放这些资源的代码(delete)前面发生了异常，则释放资源的代码将不会被执行。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 异常处理 </tag>
+            
+            <tag> 栈展开 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>try语句块和异常处理</title>
       <link href="/posts/cpp-exception-handling.html"/>
       <url>/posts/cpp-exception-handling.html</url>

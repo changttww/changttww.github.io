@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-21T15:55:35.000Z</updated>
+  <updated>2025-05-21T15:58:35.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>抛出异常</title>
+    <link href="https://www.magicat.cc/posts/cpp-throw-exception.html"/>
+    <id>https://www.magicat.cc/posts/cpp-throw-exception.html</id>
+    <published>2025-05-21T15:58:35.000Z</published>
+    <updated>2025-05-21T15:58:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>throw抛出异常，后面的语句不再执行，跳转到与之匹配的catch模块</p><p>栈展开就是在程序抛出异常后，沿着函数调用链一层层往回找，找到包住throw语句的try和相匹配的能处理异常的catch代码的过程。如果找到了就处理，找不到就程序崩溃。<br><img src="https://cdn-a.markji.com/files/682be2251a5e20b2c665c915_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rOHx9vc72x-6Y5_Dz-Ww222qUrk=" alt=""></p><p>在栈展开的过程中，调用链上退出的函数中创建的局部对象会被自动销毁。每退出一层函数、一个代码块，里面的局部变量（对象）就会像正常离开作用域一样被销毁。</p><p>析构函数总是会被执行的，但是函数中负责释放资源的代码却可能被跳过，如果一个块分配了资源，并且在负责释放这些资源的代码(delete)前面发生了异常，则释放资源的代码将不会被执行。</p>]]></content>
+    
+    
+    <summary type="html">C++中异常抛出机制及栈展开过程详解</summary>
+    
+    
+    
+    <category term="C++教程" scheme="https://www.magicat.cc/categories/C-%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="异常处理" scheme="https://www.magicat.cc/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+    <category term="栈展开" scheme="https://www.magicat.cc/tags/%E6%A0%88%E5%B1%95%E5%BC%80/"/>
+    
+  </entry>
   
   <entry>
     <title>try语句块和异常处理</title>
@@ -465,29 +490,6 @@
     
     
     <summary type="html">C++中类作用域继承机制及名字查找规则详解</summary>
-    
-    
-    
-    <category term="编程语言" scheme="https://www.magicat.cc/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>虚析构函数与继承中的拷贝控制</title>
-    <link href="https://www.magicat.cc/posts/virtual-destructor-copy-control.html"/>
-    <id>https://www.magicat.cc/posts/virtual-destructor-copy-control.html</id>
-    <published>2025-04-23T15:01:42.000Z</published>
-    <updated>2025-04-23T15:01:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="虚析构函数">虚析构函数</h2><p>如果一个类会作为基类使用，就必须把它的析构函数设为虚函数，否则通过基类指针删除派生类对象会是未定义行为。</p><p>只要一个类显式定义了析构函数（包括虚析构函数，即使是 =default），在这个类及其派生类中，编译器都不会自动生成移动构造函数和移动赋值运算符。</p><p>如果还想要移动操作，就要手动写出来或默认声明它们。</p><h2 id="合成拷贝控制与继承">合成拷贝控制与继承</h2><p>合成的拷贝控制函数会自动处理对象的创建、复制和销毁，先处理基类的成员，再处理派生类的成员。</p><p>如果基类的拷贝控制函数被删除或不可访问，派生类的相关拷贝控制函数也会被删除。</p><p>如果基类没有移动构造函数，派生类也不能默认有移动构造函数。如果派生类想要支持拷贝或移动操作，它必须自己实现这些操作，并且处理好基类部分的拷贝或移动。</p><h2 id="派生类的拷贝控制成员">派生类的拷贝控制成员</h2><p>和派生类的构造函数一样，当派生类定义了拷贝或移动操作时，该操作负责拷贝或移动包括基类部分成员在内的整个对象。</p><p>但析构函数只负责销毁派生类自己分配的成员，基类部分的析构会被自动调用执行。</p><h3 id="拷贝构造函数">拷贝构造函数</h3><p>通常直接使用基类的拷贝构造函数初始化基类部分，但要在初始化列表显式调用。<br><img src="https://cdn-a.markji.com/files/6800b4b12d056573639cf116_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:PoudJ85t7zVQbnAazX4tqzDXcY0=" alt=""></p><h3 id="拷贝赋值运算符">拷贝赋值运算符</h3><p>拷贝赋值也要在函数体内显式调用基类赋值运算符，否则不会自动调用。<br><img src="https://cdn-a.markji.com/files/6800b5472d056573639d06d8_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:8jppwX4IScpCav6_n_0R564_Hbs=" alt=""></p><h3 id="析构函数">析构函数</h3><p>基类析构函数可以被自动调用。<br><img src="https://cdn-a.markji.com/files/6800b6df75151df2bb621783_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:4WB0VxVK8x4_5yAhIv_sguCSATQ=" alt=""></p>]]></content>
-    
-    
-    <summary type="html">C++中虚析构函数的作用及继承关系下的拷贝控制成员详解</summary>
     
     
     
