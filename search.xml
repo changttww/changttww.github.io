@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>try语句块和异常处理</title>
+      <link href="/posts/cpp-exception-handling.html"/>
+      <url>/posts/cpp-exception-handling.html</url>
+      
+        <content type="html"><![CDATA[<p>throw后面紧跟一个表达式，表达式类型就是抛出异常的类型</p><p>try语句块<br><img src="https://cdn-a.markji.com/files/682d44ba1a5e20b2c686d818_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:3TDY0EmN8m-HRpEjKAsmSwnt_R8=" alt=""><br>program-statements里面放正常的程序逻辑，一旦执行到throw语句，就中断正常的程序，开始寻找匹配的catch</p><p>catch语句<br><img src="https://cdn-a.markji.com/files/682d542dc229c521d8bc7266_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:F2HZC8dPei50R4EymUXJc_aCgU8=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 异常处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>反转链表</title>
       <link href="/posts/leetcode-reverse-linked-list.html"/>
       <url>/posts/leetcode-reverse-linked-list.html</url>

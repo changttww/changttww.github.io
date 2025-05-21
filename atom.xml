@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-20T14:50:37.000Z</updated>
+  <updated>2025-05-21T15:55:35.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>try语句块和异常处理</title>
+    <link href="https://www.magicat.cc/posts/cpp-exception-handling.html"/>
+    <id>https://www.magicat.cc/posts/cpp-exception-handling.html</id>
+    <published>2025-05-21T15:55:35.000Z</published>
+    <updated>2025-05-21T15:55:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>throw后面紧跟一个表达式，表达式类型就是抛出异常的类型</p><p>try语句块<br><img src="https://cdn-a.markji.com/files/682d44ba1a5e20b2c686d818_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:3TDY0EmN8m-HRpEjKAsmSwnt_R8=" alt=""><br>program-statements里面放正常的程序逻辑，一旦执行到throw语句，就中断正常的程序，开始寻找匹配的catch</p><p>catch语句<br><img src="https://cdn-a.markji.com/files/682d542dc229c521d8bc7266_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:F2HZC8dPei50R4EymUXJc_aCgU8=" alt=""></p>]]></content>
+    
+    
+    <summary type="html">C++中异常处理机制的基本用法</summary>
+    
+    
+    
+    <category term="C++教程" scheme="https://www.magicat.cc/categories/C-%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="异常处理" scheme="https://www.magicat.cc/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>反转链表</title>
@@ -465,29 +488,6 @@
     
     
     <summary type="html">C++中虚析构函数的作用及继承关系下的拷贝控制成员详解</summary>
-    
-    
-    
-    <category term="编程语言" scheme="https://www.magicat.cc/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>抽象基类与访问控制</title>
-    <link href="https://www.magicat.cc/posts/abstract-base-class.html"/>
-    <id>https://www.magicat.cc/posts/abstract-base-class.html</id>
-    <published>2025-04-23T14:59:11.000Z</published>
-    <updated>2025-04-23T14:59:11.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h2><p>在虚函数声明语句后面添加=0定义纯虚函数，之后不能在类内为纯虚函数提供定义。</p><p>含义纯虚函数的类是抽象基类，不能直接创建一个抽象基类的对象。</p><p>派生类构造函数只初始化它的直接基类。</p><h2 id="访问控制与继承"><a href="#访问控制与继承" class="headerlink" title="访问控制与继承"></a>访问控制与继承</h2><p>protected 成员是”继承可见”的，但必须通过”自己继承来的一份”去访问；继承方式则控制”你能不能把你继承来的成员继续公开给外部或子类”。</p><h3 id="Protected成员访问规则"><a href="#Protected成员访问规则" class="headerlink" title="Protected成员访问规则"></a>Protected成员访问规则</h3><p>protected成员只能被派生类和友元函数访问，不能被类外部访问。</p><p>子类及其友元只能通过自己的类对象访问自己继承来的父类protected成员，不能直接通过父类对象访问原先父类对象中的 protected 成员。<br><img src="https://cdn-a.markji.com/files/67f54a17c7682418c3ba10ff_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:RwgZuv6gWWkOZpzzn3EbCmewKJg=" alt=""></p><h3 id="友元关系"><a href="#友元关系" class="headerlink" title="友元关系"></a>友元关系</h3><p>友元关系不能传递也不能继承。</p><h3 id="继承方式与访问权限"><a href="#继承方式与访问权限" class="headerlink" title="继承方式与访问权限"></a>继承方式与访问权限</h3><p>派生类的继承方式决定了外部对象对派生类成员的访问权限。<br><img src="https://cdn-a.markji.com/files/67f54aecc7682418c3ba2875_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:oi4Yb307pwlRkFO32aT4H6TcDWI=" alt=""></p><h3 id="修改访问权限"><a href="#修改访问权限" class="headerlink" title="修改访问权限"></a>修改访问权限</h3><p>using声明可以改变个别成员的可访问性。<br><img src="https://cdn-a.markji.com/files/67f54c96a5d66136f3d2bbb6_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:oE6rawLQqUT3ZBqRhzncksdrW68=" alt=""></p><h3 id="class与struct的区别"><a href="#class与struct的区别" class="headerlink" title="class与struct的区别"></a>class与struct的区别</h3><p>用class定义的派生类默认私有继承，struct定义的派生类默认公有继承。</p><p>这是这两个关键字的唯一区别。</p>]]></content>
-    
-    
-    <summary type="html">C++中抽象基类的概念及继承中的访问控制详解</summary>
     
     
     
