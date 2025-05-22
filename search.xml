@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>异常对象</title>
+      <link href="/posts/cpp-exception-object.html"/>
+      <url>/posts/cpp-exception-object.html</url>
+      
+        <content type="html"><![CDATA[<p>当使用 throw 抛出一个异常时，其实是创建了一个特殊的对象，叫做&quot;异常对象&quot;。</p><p>1.throw 会&quot;拷贝&quot;那个异常值（不是原样扔出去，而是拷贝/移动一份）；<br>2.这份异常对象会放到一个专门由编译器管理的内存空间里，确保后续 catch 能访问；<br>3.一旦异常处理完毕，这个异常对象会被自动销毁；<br>4.如果抛出的东西是一个类对象，它的构造函数、析构函数、拷贝/移动构造函数都必须是可访问的，不然编译器会报错。</p><p>不要抛指针指向局部对象，局部对象在栈展开退出代码块时就会销毁，导致捕获空悬指针</p><p>对象切片：类继承中，静态编译时类型决定了异常对象的类型，即如果抛出的基类对象指针是用派生类赋值的，只会复制并抛出基类部分。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 异常处理 </tag>
+            
+            <tag> 异常对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>抛出异常</title>
       <link href="/posts/cpp-throw-exception.html"/>
       <url>/posts/cpp-throw-exception.html</url>
