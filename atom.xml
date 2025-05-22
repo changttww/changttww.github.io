@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-22T15:35:29.000Z</updated>
+  <updated>2025-05-22T15:38:29.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>捕获异常</title>
+    <link href="https://www.magicat.cc/posts/cpp-catch-exception.html"/>
+    <id>https://www.magicat.cc/posts/cpp-catch-exception.html</id>
+    <published>2025-05-22T15:38:29.000Z</published>
+    <updated>2025-05-22T15:38:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果你要处理的是继承体系中的异常类型，用”引用”来接收异常对象是最佳实践，可以避免复制、保留完整对象信息，方便后续操作。</p><p>比如如果catch的参数是基类类型，则我们可以使用其派生类类型的异常对象对其进行初始化，引用传参能保证该异常对象不发生对象切片。<br><img src="https://cdn-a.markji.com/files/682d271d1a5e20b2c6826042_hd.png?e=1747930607729&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:NzxHuyGRC7dtvbJHd8l-QOWC7fI=" alt=""><br>e.g.抛出派生类异常对象，catch中使用基类指针捕获异常</p>]]></content>
+    
+    
+    <summary type="html">C++中异常捕获的最佳实践及注意事项</summary>
+    
+    
+    
+    <category term="C++教程" scheme="https://www.magicat.cc/categories/C-%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="异常处理" scheme="https://www.magicat.cc/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+    <category term="继承" scheme="https://www.magicat.cc/tags/%E7%BB%A7%E6%89%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>异常对象</title>
@@ -478,29 +503,6 @@
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
     <category term="比特币" scheme="https://www.magicat.cc/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>构造函数中的虚函数与继承</title>
-    <link href="https://www.magicat.cc/posts/constructor-virtual-function.html"/>
-    <id>https://www.magicat.cc/posts/constructor-virtual-function.html</id>
-    <published>2025-04-23T15:14:48.000Z</published>
-    <updated>2025-04-23T15:14:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="构造析构中的虚函数调用"><a href="#构造析构中的虚函数调用" class="headerlink" title="构造析构中的虚函数调用"></a>构造析构中的虚函数调用</h2><p>在构造和析构过程中，虚函数无法动态绑定到派生类的版本，只能绑定到基类的版本因为派生类的构造在基类之后，而析构又在基类之前，此时都处于未完成的状态。</p><h2 id="继承构造函数"><a href="#继承构造函数" class="headerlink" title="继承构造函数"></a>继承构造函数</h2><p>派生类可以重用其直接基类定义的构造函数，但不能继承默认、拷贝和移动构造。</p><p>通过using 基类名::基类构造函数来使用，编译器会调用基类的构造函数初始化基类部分，但不会继承构造函数的具体实现（即函数体内容不会被继承）。<br><img src="https://cdn-a.markji.com/files/6800f32575151df2bb69a644_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:S4uCS8guDfEPvnjKe4miK71hFys=" alt=""><br><img src="https://cdn-a.markji.com/files/6800f4cd75151df2bb69de06_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:DCJfkqaJkhZWLn-IvPrYuPylqTE=" alt=""></p><h2 id="默认参数的继承"><a href="#默认参数的继承" class="headerlink" title="默认参数的继承"></a>默认参数的继承</h2><p>当基类构造函数包含默认参数时，派生类并不会直接继承这些默认参数，而是会为派生类生成多个构造函数，每个构造函数省略了基类构造函数中一个带默认值的参数。</p><p>两种类型，一种直接去掉默认参数，一种将默认参数转换为默认值。<br><img src="https://cdn-a.markji.com/files/6800f80675151df2bb6a9773_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:9sBRyoKAO1e8NTYMoPOY-Y0GO9Y=" alt=""></p>]]></content>
-    
-    
-    <summary type="html">C++中构造函数和析构函数中虚函数的行为及构造函数继承机制详解</summary>
-    
-    
-    
-    <category term="编程语言" scheme="https://www.magicat.cc/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
   </entry>
   

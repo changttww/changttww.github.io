@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>捕获异常</title>
+      <link href="/posts/cpp-catch-exception.html"/>
+      <url>/posts/cpp-catch-exception.html</url>
+      
+        <content type="html"><![CDATA[<p>如果你要处理的是继承体系中的异常类型，用”引用”来接收异常对象是最佳实践，可以避免复制、保留完整对象信息，方便后续操作。</p><p>比如如果catch的参数是基类类型，则我们可以使用其派生类类型的异常对象对其进行初始化，引用传参能保证该异常对象不发生对象切片。<br><img src="https://cdn-a.markji.com/files/682d271d1a5e20b2c6826042_hd.png?e=1747930607729&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:NzxHuyGRC7dtvbJHd8l-QOWC7fI=" alt=""><br>e.g.抛出派生类异常对象，catch中使用基类指针捕获异常</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 异常处理 </tag>
+            
+            <tag> 继承 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>异常对象</title>
       <link href="/posts/cpp-exception-object.html"/>
       <url>/posts/cpp-exception-object.html</url>
