@@ -8,7 +8,7 @@
       <link href="/posts/cpp-catch-exception.html"/>
       <url>/posts/cpp-catch-exception.html</url>
       
-        <content type="html"><![CDATA[<p>如果你要处理的是继承体系中的异常类型，用”引用”来接收异常对象是最佳实践，可以避免复制、保留完整对象信息，方便后续操作。</p><p>比如如果catch的参数是基类类型，则我们可以使用其派生类类型的异常对象对其进行初始化，引用传参能保证该异常对象不发生对象切片。<br><img src="https://cdn-a.markji.com/files/682d271d1a5e20b2c6826042_hd.png?e=1747930607729&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:NzxHuyGRC7dtvbJHd8l-QOWC7fI=" alt=""><br>e.g.抛出派生类异常对象，catch中使用基类指针捕获异常</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="引用捕获异常">引用捕获异常</h2><p>如果你要处理的是继承体系中的异常类型，用&quot;引用&quot;来接收异常对象是最佳实践，可以避免复制、保留完整对象信息，方便后续操作。</p><p>比如如果catch的参数是基类类型，则我们可以使用其派生类类型的异常对象对其进行初始化，引用传参能保证该异常对象不发生对象切片。<br><img src="https://cdn-a.markji.com/files/682d271d1a5e20b2c6826042_hd.png?e=1747930607729&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:NzxHuyGRC7dtvbJHd8l-QOWC7fI=" alt=""></p><p>e.g.抛出派生类异常对象，catch中使用基类指针捕获异常</p><h2 id="查找匹配的处理代码">查找匹配的处理代码</h2><p>按出现的顺序逐一匹配</p><p>只允许从非常量向常量，派生类向基类，数组被转换成指向数组（元素）类型的指针，函数被转换成指向该函数类型的指针的类型转换。</p><p>不允许标准算术类型和类类型等转换规则。</p><p>如果在多个catch语句的类型之间存在着继承关系，则我们应该把继承链最底端的类放在前面，而将继承链最顶端的类放在后面。</p>]]></content>
       
       
       <categories>
@@ -33,40 +33,11 @@
     
     
     <entry>
-      <title>异常对象</title>
-      <link href="/posts/cpp-exception-object.html"/>
-      <url>/posts/cpp-exception-object.html</url>
+      <title>抛出异常对象</title>
+      <link href="/posts/cpp-exception-handling.html"/>
+      <url>/posts/cpp-exception-handling.html</url>
       
-        <content type="html"><![CDATA[<p>当使用 throw 抛出一个异常时，其实是创建了一个特殊的对象，叫做&quot;异常对象&quot;。</p><p>1.throw 会&quot;拷贝&quot;那个异常值（不是原样扔出去，而是拷贝/移动一份）；<br>2.这份异常对象会放到一个专门由编译器管理的内存空间里，确保后续 catch 能访问；<br>3.一旦异常处理完毕，这个异常对象会被自动销毁；<br>4.如果抛出的东西是一个类对象，它的构造函数、析构函数、拷贝/移动构造函数都必须是可访问的，不然编译器会报错。</p><p>不要抛指针指向局部对象，局部对象在栈展开退出代码块时就会销毁，导致捕获空悬指针</p><p>对象切片：类继承中，静态编译时类型决定了异常对象的类型，即如果抛出的基类对象指针是用派生类赋值的，只会复制并抛出基类部分。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> C++教程 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
-            
-            <tag> 异常处理 </tag>
-            
-            <tag> 异常对象 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>抛出异常</title>
-      <link href="/posts/cpp-throw-exception.html"/>
-      <url>/posts/cpp-throw-exception.html</url>
-      
-        <content type="html"><![CDATA[<p>throw抛出异常，后面的语句不再执行，跳转到与之匹配的catch模块</p><p>栈展开就是在程序抛出异常后，沿着函数调用链一层层往回找，找到包住throw语句的try和相匹配的能处理异常的catch代码的过程。如果找到了就处理，找不到就程序崩溃。<br><img src="https://cdn-a.markji.com/files/682be2251a5e20b2c665c915_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rOHx9vc72x-6Y5_Dz-Ww222qUrk=" alt=""></p><p>在栈展开的过程中，调用链上退出的函数中创建的局部对象会被自动销毁。每退出一层函数、一个代码块，里面的局部变量（对象）就会像正常离开作用域一样被销毁。</p><p>析构函数总是会被执行的，但是函数中负责释放资源的代码却可能被跳过，如果一个块分配了资源，并且在负责释放这些资源的代码(delete)前面发生了异常，则释放资源的代码将不会被执行。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="try语句块和异常处理">try语句块和异常处理</h2><p>throw后面紧跟一个表达式，表达式类型就是抛出异常的类型</p><p>try语句块<br><img src="https://cdn-a.markji.com/files/682d44ba1a5e20b2c686d818_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:3TDY0EmN8m-HRpEjKAsmSwnt_R8=" alt=""><br>program-statements里面放正常的程序逻辑，一旦执行到throw语句，就中断正常的程序，开始寻找匹配的catch</p><p>catch语句<br><img src="https://cdn-a.markji.com/files/682d542dc229c521d8bc7266_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:F2HZC8dPei50R4EymUXJc_aCgU8=" alt=""></p><h2 id="抛出异常">抛出异常</h2><p>throw抛出异常，后面的语句不再执行，跳转到与之匹配的catch模块</p><p>栈展开就是在程序抛出异常后，沿着函数调用链一层层往回找，找到包住throw语句的try和相匹配的能处理异常的catch代码的过程。如果找到了就处理，找不到就程序崩溃。<br><img src="https://cdn-a.markji.com/files/682be2251a5e20b2c665c915_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rOHx9vc72x-6Y5_Dz-Ww222qUrk=" alt=""></p><p>在栈展开的过程中，调用链上退出的函数中创建的局部对象会被自动销毁。每退出一层函数、一个代码块，里面的局部变量（对象）就会像正常离开作用域一样被销毁。</p><p>析构函数总是会被执行的，但是函数中负责释放资源的代码却可能被跳过，如果一个块分配了资源，并且在负责释放这些资源的代码(delete)前面发生了异常，则释放资源的代码将不会被执行。</p><h2 id="异常对象">异常对象</h2><p>当使用 throw 抛出一个异常时，其实是创建了一个特殊的对象，叫做&quot;异常对象&quot;。</p><p>1.throw 会&quot;拷贝&quot;那个异常值（不是原样扔出去，而是拷贝/移动一份）；<br>2.这份异常对象会放到一个专门由编译器管理的内存空间里，确保后续 catch 能访问；<br>3.一旦异常处理完毕，这个异常对象会被自动销毁；<br>4.如果抛出的东西是一个类对象，它的构造函数、析构函数、拷贝/移动构造函数都必须是可访问的，不然编译器会报错。</p><p>不要抛指针指向局部对象，局部对象在栈展开退出代码块时就会销毁，导致捕获空悬指针</p><p>对象切片：类继承中，静态编译时类型决定了异常对象的类型，即如果抛出的基类对象指针是用派生类赋值的，只会复制并抛出基类部分。</p>]]></content>
       
       
       <categories>
@@ -83,33 +54,6 @@
             <tag> 异常处理 </tag>
             
             <tag> 栈展开 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>try语句块和异常处理</title>
-      <link href="/posts/cpp-exception-handling.html"/>
-      <url>/posts/cpp-exception-handling.html</url>
-      
-        <content type="html"><![CDATA[<p>throw后面紧跟一个表达式，表达式类型就是抛出异常的类型</p><p>try语句块<br><img src="https://cdn-a.markji.com/files/682d44ba1a5e20b2c686d818_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:3TDY0EmN8m-HRpEjKAsmSwnt_R8=" alt=""><br>program-statements里面放正常的程序逻辑，一旦执行到throw语句，就中断正常的程序，开始寻找匹配的catch</p><p>catch语句<br><img src="https://cdn-a.markji.com/files/682d542dc229c521d8bc7266_hd.png?e=1747845441213&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:F2HZC8dPei50R4EymUXJc_aCgU8=" alt=""></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> C++教程 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
-            
-            <tag> 异常处理 </tag>
             
         </tags>
       
