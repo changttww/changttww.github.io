@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://www.magicat.cc/posts/cpp-rethrow-exception.html</loc>
+    
+    <lastmod>2025-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.magicat.cc/posts/cpp-catch-exception.html</loc>
     
     <lastmod>2025-05-22</lastmod>
@@ -900,6 +909,13 @@
   
   <url>
     <loc>https://www.magicat.cc/tags/%E7%BB%A7%E6%89%BF/</loc>
+    <lastmod>2025-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.magicat.cc/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2025-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

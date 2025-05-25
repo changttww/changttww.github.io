@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-22T15:38:29.000Z</updated>
+  <updated>2025-05-25T15:09:25.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重新抛出与构造函数异常</title>
+    <link href="https://www.magicat.cc/posts/cpp-rethrow-exception.html"/>
+    <id>https://www.magicat.cc/posts/cpp-rethrow-exception.html</id>
+    <published>2025-05-25T15:09:25.000Z</published>
+    <updated>2025-05-25T15:09:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="重新抛出异常">重新抛出异常</h2><p>在catch模块的最后加上空的throw语句，可以重新抛出，沿着调用链向上传递。</p><p>如果catch的异常声明是引用类型，语句内又该改变了其参数内容，重新抛出时就会抛出改变后的异常对象。<br><img src="https://cdn-a.markji.com/files/682d2b681a5e20b2c682bf74_hd.png?e=1748187782642&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:fU2CVCtw-9cBIJtYZITSxtPONg8=" alt=""></p><h2 id="捕获所有异常">捕获所有异常</h2><p>catch（…)可以捕获所有异常，通常和重新抛出语句一起使用，其中catch执行当前局部能完成的工作，随后重新抛出异常。</p><p>如果catch(…)与其他几个catch语句一起出现，则catch(…)必须在最后的位置。出现在捕获所有异常语句后面的catch语句将永远不会被匹配。</p><h2 id="构造函数异常处理">构造函数异常处理</h2><p>要想处理构造函数初始值抛出的异常，我们必须将构造函数写成函数try语句块。<br><img src="https://cdn-a.markji.com/files/682d5847c229c521d8bcab43_hd.png?e=1748187782642&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:pTA7y2RI1Vy_pcmVAYIVCUG_okU=" alt=""><br>在初始化构造函数的参数时也可能发生异常，这样的异常不属于函数try语句块的一部分。构造函数try语句块只能处理构造函数开始执行后发生的异常。<br><img src="https://cdn-a.markji.com/files/682d5a42c229c521d8bcd54e_hd.png?e=1748187782642&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:snpOu2HX3-bX7zC1SHki6g174sM=" alt=""></p>]]></content>
+    
+    
+    <summary type="html">C++中异常的重新抛出机制及构造函数异常处理</summary>
+    
+    
+    
+    <category term="C++教程" scheme="https://www.magicat.cc/categories/C-%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="异常处理" scheme="https://www.magicat.cc/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+    <category term="构造函数" scheme="https://www.magicat.cc/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>捕获异常</title>
@@ -469,29 +494,6 @@
     
     
     <summary type="html">C++中构造函数和析构函数中虚函数的行为及构造函数继承机制详解</summary>
-    
-    
-    
-    <category term="编程语言" scheme="https://www.magicat.cc/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="面向对象" scheme="https://www.magicat.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类作用域的继承</title>
-    <link href="https://www.magicat.cc/posts/class-scope-inheritance.html"/>
-    <id>https://www.magicat.cc/posts/class-scope-inheritance.html</id>
-    <published>2025-04-23T15:10:56.000Z</published>
-    <updated>2025-04-23T15:10:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="作用域嵌套规则"><a href="#作用域嵌套规则" class="headerlink" title="作用域嵌套规则"></a>作用域嵌套规则</h2><p>派生类作用域嵌套在其基类的作用域之中，如果一个名字在派生类作用域无法解析，编译器会到外层基类作用域中寻找。</p><h2 id="名字查找与静态类型"><a href="#名字查找与静态类型" class="headerlink" title="名字查找与静态类型"></a>名字查找与静态类型</h2><p>之前写过基类的指针或引用可以传派生类，但此时这个指针依然只能调用基类成员，不能调用独属于传进来的派生类的成员，因为编译时会识别静态类型进行名字查找。</p><h2 id="名字隐藏"><a href="#名字隐藏" class="headerlink" title="名字隐藏"></a>名字隐藏</h2><p>派生类的成员将隐藏同名的基类成员，但可以通过作用域运算符显式调用隐藏的成员。</p><h2 id="覆盖重载函数"><a href="#覆盖重载函数" class="headerlink" title="覆盖重载函数"></a>覆盖重载函数</h2><p>派生类中只要出现和基类同名的函数，就会覆盖掉基类中该函数所有版本。</p><p>可以先用using把所有基类的重载搬过来，就能只覆盖自己想要覆盖的那个版本。<br><img src="https://cdn-a.markji.com/files/67f5c4c4a5d66136f3d79f3a_hd.png?e=1745422494155&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:4TILibPUCQRPIFMsGGTNp1vKMuA=" alt=""></p>]]></content>
-    
-    
-    <summary type="html">C++中类作用域继承机制及名字查找规则详解</summary>
     
     
     

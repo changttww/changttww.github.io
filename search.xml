@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>重新抛出与构造函数异常</title>
+      <link href="/posts/cpp-rethrow-exception.html"/>
+      <url>/posts/cpp-rethrow-exception.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="重新抛出异常">重新抛出异常</h2><p>在catch模块的最后加上空的throw语句，可以重新抛出，沿着调用链向上传递。</p><p>如果catch的异常声明是引用类型，语句内又该改变了其参数内容，重新抛出时就会抛出改变后的异常对象。<br><img src="https://cdn-a.markji.com/files/682d2b681a5e20b2c682bf74_hd.png?e=1748187782642&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:fU2CVCtw-9cBIJtYZITSxtPONg8=" alt=""></p><h2 id="捕获所有异常">捕获所有异常</h2><p>catch（…)可以捕获所有异常，通常和重新抛出语句一起使用，其中catch执行当前局部能完成的工作，随后重新抛出异常。</p><p>如果catch(…)与其他几个catch语句一起出现，则catch(…)必须在最后的位置。出现在捕获所有异常语句后面的catch语句将永远不会被匹配。</p><h2 id="构造函数异常处理">构造函数异常处理</h2><p>要想处理构造函数初始值抛出的异常，我们必须将构造函数写成函数try语句块。<br><img src="https://cdn-a.markji.com/files/682d5847c229c521d8bcab43_hd.png?e=1748187782642&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:pTA7y2RI1Vy_pcmVAYIVCUG_okU=" alt=""><br>在初始化构造函数的参数时也可能发生异常，这样的异常不属于函数try语句块的一部分。构造函数try语句块只能处理构造函数开始执行后发生的异常。<br><img src="https://cdn-a.markji.com/files/682d5a42c229c521d8bcd54e_hd.png?e=1748187782642&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:snpOu2HX3-bX7zC1SHki6g174sM=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 异常处理 </tag>
+            
+            <tag> 构造函数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>捕获异常</title>
       <link href="/posts/cpp-catch-exception.html"/>
       <url>/posts/cpp-catch-exception.html</url>
