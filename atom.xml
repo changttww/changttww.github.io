@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-26T15:12:25.000Z</updated>
+  <updated>2025-05-26T15:55:22.753Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>异常类层次</title>
+    <link href="https://www.magicat.cc/posts/c6dfba0d.html"/>
+    <id>https://www.magicat.cc/posts/c6dfba0d.html</id>
+    <published>2025-05-26T15:54:25.000Z</published>
+    <updated>2025-05-26T15:55:22.753Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: 异常类层次<br>description: C++标准库异常类层次结构及自定义异常类<br>tags:</p><ul><li>C++</li><li>异常处理</li><li>异常类<br>categories:</li><li>C++教程<br>mathjax: false<br>abbrlink: cpp-exception-hierarchy<br>date: 2025-05-26 23:15:25<br>updated: 2025-05-26 23:15:25</li></ul><hr><p><img src="https://cdn-a.markji.com/files/682d6b6c1a5e20b2c689ee30_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rnb9Sl68RcbnCCDVGRq719apmhE=" alt=""><br>也可以自定义异常类，继承于上面的exception类或其子类。</p><p>构造函数通常传入string参数描述异常信息。<br><img src="https://cdn-a.markji.com/files/68330ac9721bde64427be187_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cSobHpzH1G2p277_NqFUVnup_XI=" alt=""></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;title: 异常类层次&lt;br&gt;
+description: C++标准库异常类层次结构及自定义异常类&lt;br&gt;
+tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;C++&lt;/li&gt;
+&lt;li&gt;异常处理&lt;/li&gt;
+&lt;li&gt;异常类&lt;br&gt;
+categories:&lt;/li&gt;
+&lt;li&gt;C+</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>noexcept异常说明</title>
@@ -482,29 +511,6 @@
     <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
     
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链基础知识</title>
-    <link href="https://www.magicat.cc/posts/blockchain-basics.html"/>
-    <id>https://www.magicat.cc/posts/blockchain-basics.html</id>
-    <published>2025-04-28T14:50:36.000Z</published>
-    <updated>2025-04-28T14:50:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="简易区块结构">简易区块结构</h2><p>区块内容包含：</p><ul><li>时间戳</li><li>前哈希</li><li>当前哈希</li><li>实际data</li></ul><p>当前哈希的计算方法：<br>SHA256(时间戳,前哈希,实际data)</p><p>实际data存放的数据为交易信息。</p><p>区块链本质上为一个数据库，每一个块都连到前一个块。</p><h2 id="共识机制">共识机制</h2><p>因为是分布式数据库，且没有独裁者，故加入一个块需要获得其他参与者的同意。</p><h3 id="工作量证明">工作量证明</h3><p>需要经历一系列繁重的运算才可以获得加入块的权力。</p><h3 id="哈希函数">哈希函数</h3><p>哈希函数被广泛用于检测数据的一致性，哈希值和原始数据是一一对应的，可以用来检测文件是否损坏，比较一下传输之后的哈希和作者提供的哈希。</p><h2 id="比特币的算法">比特币的算法</h2><p>把时间戳，前哈希，实际data然后用一个计数器不断+1来执行哈希，直到哈希值前20为0(难度为20)，概率为1/2^20。</p><p>注意：</p><ul><li>nonce为计数器，一个密码学术语</li><li>因为全是0开头，所以只要是否比较小于0x000000…，就知道是否前20位都是0</li></ul>]]></content>
-    
-    
-    <summary type="html">区块链的基本概念、工作原理及比特币共识机制简介</summary>
-    
-    
-    
-    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="比特币" scheme="https://www.magicat.cc/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
     
   </entry>
   

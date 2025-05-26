@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>异常类层次</title>
+      <link href="/posts/c6dfba0d.html"/>
+      <url>/posts/c6dfba0d.html</url>
+      
+        <content type="html"><![CDATA[<hr><p>title: 异常类层次<br>description: C++标准库异常类层次结构及自定义异常类<br>tags:</p><ul><li>C++</li><li>异常处理</li><li>异常类<br>categories:</li><li>C++教程<br>mathjax: false<br>abbrlink: cpp-exception-hierarchy<br>date: 2025-05-26 23:15:25<br>updated: 2025-05-26 23:15:25</li></ul><hr><p><img src="https://cdn-a.markji.com/files/682d6b6c1a5e20b2c689ee30_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rnb9Sl68RcbnCCDVGRq719apmhE=" alt=""><br>也可以自定义异常类，继承于上面的exception类或其子类。</p><p>构造函数通常传入string参数描述异常信息。<br><img src="https://cdn-a.markji.com/files/68330ac9721bde64427be187_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cSobHpzH1G2p277_NqFUVnup_XI=" alt=""></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>noexcept异常说明</title>
       <link href="/posts/cpp-noexcept.html"/>
       <url>/posts/cpp-noexcept.html</url>
