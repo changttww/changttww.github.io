@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-27T15:30:30.003Z</updated>
+  <updated>2025-05-27T15:41:03.879Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -17,20 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用命名空间成员</title>
+    <link href="https://www.magicat.cc/posts/cpp-namespace-use.html"/>
+    <id>https://www.magicat.cc/posts/cpp-namespace-use.html</id>
+    <published>2025-05-27T15:31:38.000Z</published>
+    <updated>2025-05-27T15:41:03.879Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用命名空间成员"><a href="#使用命名空间成员" class="headerlink" title="使用命名空间成员"></a>使用命名空间成员</h2><h3 id="using-声明"><a href="#using-声明" class="headerlink" title="using 声明"></a><code>using</code> 声明</h3><ul><li>引入一个命名空间中的<strong>一个成员</strong>。</li><li>会<strong>隐藏外层作用域的同名实体</strong>。</li><li><code>using</code> 声明的有效范围<strong>到其所在的作用域结束为止</strong>。</li></ul><h3 id="using-指示"><a href="#using-指示" class="headerlink" title="using 指示"></a><code>using</code> 指示</h3><ul><li>引入一个命名空间中<strong>所有成员</strong>。</li><li><strong>不能</strong>出现在类作用域中。</li><li><strong>可以</strong>出现在局部作用域中，但会被视为出现在<strong>最近的外层作用域中</strong>。</li><li><strong>会与外层作用域的同名实体冲突</strong>，使用同名实体时会出现<strong>二义性错误</strong>，这与 <code>using</code> 声明的行为<strong>截然相反</strong>。</li><li><img src="https://cdn-a.markji.com/files/683312f2721bde64427c6708_hd.png?e=1748361790201&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:o0cd_f955q-C6zMNddkEG_mtl1I=" alt=""></li><li>有效范围也<strong>到其所在的作用域结束为止</strong>。</li></ul><h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><ul><li>头文件中<strong>不应</strong>在顶层作用域使用 <code>using</code> 指示或 <code>using</code> 声明。</li><li>最多在<strong>函数或命名空间内部使用</strong>。</li></ul>]]></content>
+    
+    
+    <summary type="html">C++中命名空间成员的使用</summary>
+    
+    
+    
+    <category term="C++教程" scheme="https://www.magicat.cc/categories/C-%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="命名空间" scheme="https://www.magicat.cc/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>命名空间定义</title>
     <link href="https://www.magicat.cc/posts/cpp-namespace.html"/>
     <id>https://www.magicat.cc/posts/cpp-namespace.html</id>
     <published>2025-05-27T15:27:43.000Z</published>
-    <updated>2025-05-27T15:30:30.003Z</updated>
+    <updated>2025-05-27T15:38:23.574Z</updated>
     
     <content type="html"><![CDATA[<h2 id="命名空间定义"><a href="#命名空间定义" class="headerlink" title="命名空间定义"></a>命名空间定义</h2><p>namespace 命名空间名字 {具体内容} 结尾不需要分号</p><p>命名空间定义可以不连续，在初次定义之后，可以又定义一个同名的，会打开已存在的命名空间并添加新成员的声明</p><p>正常情况下#include不应该在命名空间里面，不允许嵌套容器</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h2 id=&quot;命名空间定义&quot;&gt;&lt;a href=&quot;#命名空间定义&quot; class=&quot;headerlink&quot; title=&quot;命名空间定义&quot;&gt;&lt;/a&gt;命名空间定义&lt;/h2&gt;&lt;p&gt;namespace 命名空间名字 {具体内容} 结尾不需要分号&lt;/p&gt;
-&lt;p&gt;命名空间定义可以不连续，在初次</summary>
-      
+    <summary type="html">C++中命名空间的定义</summary>
     
     
     
@@ -45,27 +64,26 @@
   
   <entry>
     <title>异常类层次</title>
-    <link href="https://www.magicat.cc/posts/c6dfba0d.html"/>
-    <id>https://www.magicat.cc/posts/c6dfba0d.html</id>
-    <published>2025-05-26T15:54:25.000Z</published>
-    <updated>2025-05-26T15:55:41.932Z</updated>
+    <link href="https://www.magicat.cc/posts/cpp-exception-hierarchy.html"/>
+    <id>https://www.magicat.cc/posts/cpp-exception-hierarchy.html</id>
+    <published>2025-05-26T15:15:25.000Z</published>
+    <updated>2025-05-26T15:15:25.000Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>title: 异常类层次<br>description: C++标准库异常类层次结构及自定义异常类<br>tags:</p><ul><li>C++</li><li>异常处理</li><li>异常类<br>categories:</li><li>C++教程<br>mathjax: false<br>abbrlink: cpp-exception-hierarchy<br>date: 2025-05-26 23:15:25<br>updated: 2025-05-26 23:15:25</li></ul><hr><p><img src="https://cdn-a.markji.com/files/682d6b6c1a5e20b2c689ee30_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rnb9Sl68RcbnCCDVGRq719apmhE=" alt=""><br>也可以自定义异常类，继承于上面的exception类或其子类。</p><p>构造函数通常传入string参数描述异常信息。<br><img src="https://cdn-a.markji.com/files/68330ac9721bde64427be187_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cSobHpzH1G2p277_NqFUVnup_XI=" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/682d6b6c1a5e20b2c689ee30_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rnb9Sl68RcbnCCDVGRq719apmhE=" alt=""><br>也可以自定义异常类，继承于上面的exception类或其子类。</p><p>构造函数通常传入string参数描述异常信息。<br><img src="https://cdn-a.markji.com/files/68330ac9721bde64427be187_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cSobHpzH1G2p277_NqFUVnup_XI=" alt=""></p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;title: 异常类层次&lt;br&gt;description: C++标准库异常类层次结构及自定义异常类&lt;br&gt;tags:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;C++&lt;/li&gt;
-&lt;li&gt;异常处理&lt;/li&gt;
-&lt;li&gt;异常类&lt;br&gt;categories:&lt;/li&gt;
-&lt;li&gt;C++教程</summary>
-      
+    <summary type="html">C++标准库异常类层次结构及自定义异常类</summary>
     
     
     
+    <category term="C++教程" scheme="https://www.magicat.cc/categories/C-%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="异常处理" scheme="https://www.magicat.cc/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+    <category term="异常类" scheme="https://www.magicat.cc/tags/%E5%BC%82%E5%B8%B8%E7%B1%BB/"/>
     
   </entry>
   
@@ -487,31 +505,6 @@
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
     <category term="比特币" scheme="https://www.magicat.cc/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链核心代码2</title>
-    <link href="https://www.magicat.cc/posts/blockchain-persistence.html"/>
-    <id>https://www.magicat.cc/posts/blockchain-persistence.html</id>
-    <published>2025-04-28T14:55:28.000Z</published>
-    <updated>2025-04-28T14:55:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="区块链存储机制">区块链存储机制</h2><p>理论上任何的数据库都可以，bitcoin本质上是分布式存储。</p><p>但是这边先讨论存储，若使用字节型数据库则需要把block给序列化存储。</p><p>bitcoin的存储一般分为了blocks和chainstate：</p><ul><li>blocks里面就是每个区块的内容</li><li>chainstate存放着剩余的比特币数量</li></ul><p>注意：为了性能可以单独存储每一块，这样就不需要把整个链拿出来，但是一起存较为简单。</p><h2 id="核心实现">核心实现</h2><h3 id="1-序列化">1. 序列化</h3><p>提供序列化的block成员函数，把自身序列化。</p><h3 id="2-反序列化">2. 反序列化</h3><p>提供反序列化的非成员函数，会返回一个block。</p><h3 id="3-创世块存储">3. 创世块存储</h3><p>修改创建创世块函数，打开数据库(键值对)，读取blocksBucket：</p><ul><li>若没有则创建并往里面放入创世块和l键</li><li>若已经存在了则读取l键，然后返回blockchain(这个blockchain，内部加一个了db的成员指针)</li></ul><p>注意：l键始终存储了最后一个块的哈希值，且存放一个块的时候以他的哈希为key，序列化为value，可以通过get(key)获取value。</p><h3 id="4-区块添加修改">4. 区块添加修改</h3><p>修改addblock函数，修改前哈希的来源为数据库中的l键。</p><h3 id="5-遍历功能">5. 遍历功能</h3><p>添加遍历blockchain函数，l键到创世块，先通过l键获取最后一个区块，然后用每个区块的前哈希来更新当前哈希继续遍历。</p><h3 id="6-迭代器实现">6. 迭代器实现</h3><ul><li>新增迭代器类</li><li>新增blockchain成员函数，创建迭代器</li></ul><p>当前类图：</p>]]></content>
-    
-    
-    <summary type="html">区块链系统的数据持久化存储及命令行接口的实现</summary>
-    
-    
-    
-    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="数据库" scheme="https://www.magicat.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
