@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-26T15:55:22.753Z</updated>
+  <updated>2025-05-27T15:30:30.003Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>命名空间定义</title>
+    <link href="https://www.magicat.cc/posts/cpp-namespace.html"/>
+    <id>https://www.magicat.cc/posts/cpp-namespace.html</id>
+    <published>2025-05-27T15:27:43.000Z</published>
+    <updated>2025-05-27T15:30:30.003Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="命名空间定义"><a href="#命名空间定义" class="headerlink" title="命名空间定义"></a>命名空间定义</h2><p>namespace 命名空间名字 {具体内容} 结尾不需要分号</p><p>命名空间定义可以不连续，在初次定义之后，可以又定义一个同名的，会打开已存在的命名空间并添加新成员的声明</p><p>正常情况下#include不应该在命名空间里面，不允许嵌套容器</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;命名空间定义&quot;&gt;&lt;a href=&quot;#命名空间定义&quot; class=&quot;headerlink&quot; title=&quot;命名空间定义&quot;&gt;&lt;/a&gt;命名空间定义&lt;/h2&gt;&lt;p&gt;namespace 命名空间名字 {具体内容} 结尾不需要分号&lt;/p&gt;
+&lt;p&gt;命名空间定义可以不连续，在初次</summary>
+      
+    
+    
+    
+    <category term="C++教程" scheme="https://www.magicat.cc/categories/C-%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="命名空间" scheme="https://www.magicat.cc/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>异常类层次</title>
     <link href="https://www.magicat.cc/posts/c6dfba0d.html"/>
     <id>https://www.magicat.cc/posts/c6dfba0d.html</id>
     <published>2025-05-26T15:54:25.000Z</published>
-    <updated>2025-05-26T15:55:22.753Z</updated>
+    <updated>2025-05-26T15:55:41.932Z</updated>
     
     <content type="html"><![CDATA[<hr><p>title: 异常类层次<br>description: C++标准库异常类层次结构及自定义异常类<br>tags:</p><ul><li>C++</li><li>异常处理</li><li>异常类<br>categories:</li><li>C++教程<br>mathjax: false<br>abbrlink: cpp-exception-hierarchy<br>date: 2025-05-26 23:15:25<br>updated: 2025-05-26 23:15:25</li></ul><hr><p><img src="https://cdn-a.markji.com/files/682d6b6c1a5e20b2c689ee30_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:rnb9Sl68RcbnCCDVGRq719apmhE=" alt=""><br>也可以自定义异常类，继承于上面的exception类或其子类。</p><p>构造函数通常传入string参数描述异常信息。<br><img src="https://cdn-a.markji.com/files/68330ac9721bde64427be187_hd.png?e=1748277226369&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cSobHpzH1G2p277_NqFUVnup_XI=" alt=""></p>]]></content>
     
@@ -29,15 +56,12 @@
       
       
     <summary type="html">&lt;hr&gt;
-&lt;p&gt;title: 异常类层次&lt;br&gt;
-description: C++标准库异常类层次结构及自定义异常类&lt;br&gt;
-tags:&lt;/p&gt;
+&lt;p&gt;title: 异常类层次&lt;br&gt;description: C++标准库异常类层次结构及自定义异常类&lt;br&gt;tags:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;C++&lt;/li&gt;
 &lt;li&gt;异常处理&lt;/li&gt;
-&lt;li&gt;异常类&lt;br&gt;
-categories:&lt;/li&gt;
-&lt;li&gt;C+</summary>
+&lt;li&gt;异常类&lt;br&gt;categories:&lt;/li&gt;
+&lt;li&gt;C++教程</summary>
       
     
     
@@ -488,29 +512,6 @@ categories:&lt;/li&gt;
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
     <category term="数据库" scheme="https://www.magicat.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链核心代码1</title>
-    <link href="https://www.magicat.cc/posts/blockchain-core-implementation.html"/>
-    <id>https://www.magicat.cc/posts/blockchain-core-implementation.html</id>
-    <published>2025-04-28T14:52:59.000Z</published>
-    <updated>2025-04-28T14:52:59.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="基础数据结构">基础数据结构</h2><h3 id="1-区块结构">1. 区块结构</h3><p>定义区块头struct block，包含：</p><ul><li>时间戳</li><li>前哈希</li><li>data</li><li>当前哈希</li></ul><h3 id="2-哈希计算">2. 哈希计算</h3><p>给block提供计算当前哈希的方法。</p><h3 id="3-区块链结构">3. 区块链结构</h3><p>定义区块链struct blockchain，内部有block数组。</p><h2 id="区块操作">区块操作</h2><h3 id="4-区块添加">4. 区块添加</h3><p>定义addblock函数，提供添加区块的方法。</p><h3 id="5-创世块">5. 创世块</h3><p>定义添加创世块函数。</p><h2 id="工作量证明机制">工作量证明机制</h2><h3 id="6-POW结构">6. POW结构</h3><p>定义工作量证明结构体struct ProofOfWork，内部有：</p><ul><li>block</li><li>target(000010000000)</li></ul><p>定义其构造函数，就是一个大整数，若计算值小于target，则说明至少前五位为0。</p><h3 id="7-数据准备">7. 数据准备</h3><p>定义&quot;准备数据&quot;的ProofOfWork的成员函数，拼接用于哈希的数据，返回的data会被用于哈希。</p><h3 id="8-运行验证">8. 运行验证</h3><p>定义Run的成员函数，循环++，查询是否满足条件，满足了就退出for循环。<br>注意：要定义一个nonce的最大值防止溢出，溢出了也退出。</p><h2 id="功能完善">功能完善</h2><h3 id="9-添加验证">9. 添加验证</h3><p>修改addblock函数，在其中调用工作量证明，run成功了才执行添加。</p><h3 id="10-有效性验证">10. 有效性验证</h3><p>定义确认区块有效区块，确认一下之前Run不是因为溢出而结束。</p>]]></content>
-    
-    
-    <summary type="html">区块链系统的核心数据结构和工作量证明机制的具体实现</summary>
-    
-    
-    
-    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
   </entry>
   
