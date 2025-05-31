@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>岛屿数量</title>
+      <link href="/posts/leetcode-number-of-islands.html"/>
+      <url>/posts/leetcode-number-of-islands.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="岛屿数量">岛屿数量</h2><p><img src="https://cdn-a.markji.com/files/683b261d34e5bdcd23436852_hd.png?e=1748709437923&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:-9jmDerFHCGw9umD6fHw1H294NU=" alt=""></p><p>本质上就是遍历二维数组，然后当遇到1的时候ret++，同时用一个dfs执行深度优先，把和当前位置连接起来的1全部删除，这样继续遍历的时候就不会遇到重复的岛屿数量了。</p><p><img src="https://cdn-a.markji.com/files/683b26201a5e20b2c692dff5_hd.png?e=1748709441132&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:u34Q86l7ETlVX575xTUXXyvX7y8=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> DFS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用命名空间成员</title>
       <link href="/posts/cpp-namespace-use.html"/>
       <url>/posts/cpp-namespace-use.html</url>

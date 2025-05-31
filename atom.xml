@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-27T15:41:03.879Z</updated>
+  <updated>2025-05-31T15:52:42.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>岛屿数量</title>
+    <link href="https://www.magicat.cc/posts/leetcode-number-of-islands.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-number-of-islands.html</id>
+    <published>2025-05-31T15:52:42.000Z</published>
+    <updated>2025-05-31T15:52:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="岛屿数量">岛屿数量</h2><p><img src="https://cdn-a.markji.com/files/683b261d34e5bdcd23436852_hd.png?e=1748709437923&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:-9jmDerFHCGw9umD6fHw1H294NU=" alt=""></p><p>本质上就是遍历二维数组，然后当遇到1的时候ret++，同时用一个dfs执行深度优先，把和当前位置连接起来的1全部删除，这样继续遍历的时候就不会遇到重复的岛屿数量了。</p><p><img src="https://cdn-a.markji.com/files/683b26201a5e20b2c692dff5_hd.png?e=1748709441132&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:u34Q86l7ETlVX575xTUXXyvX7y8=" alt=""></p>]]></content>
+    
+    
+    <summary type="html">LeetCode 200.岛屿数量题解与分析</summary>
+    
+    
+    
+    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
+    
+    <category term="DFS" scheme="https://www.magicat.cc/tags/DFS/"/>
+    
+  </entry>
   
   <entry>
     <title>使用命名空间成员</title>
@@ -476,31 +501,6 @@
     
     <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
     
-    
-    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="比特币" scheme="https://www.magicat.cc/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链核心代码3</title>
-    <link href="https://www.magicat.cc/posts/blockchain-transaction.html"/>
-    <id>https://www.magicat.cc/posts/blockchain-transaction.html</id>
-    <published>2025-04-28T14:57:03.000Z</published>
-    <updated>2025-04-28T14:57:03.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="基础数据结构">基础数据结构</h2><h3 id="1-交易结构">1. 交易结构</h3><p>定义交易结构体，包含：</p><ul><li>id</li><li>TXInput</li><li>TXOutput</li></ul><h3 id="2-交易输出结构">2. 交易输出结构</h3><p>定义TXOutput结构体，内部有：</p><ul><li>value（单位是satoshi，一聪，btc最小单位）</li><li>ScriptPubKey（锁定脚本，对方地址/公钥）</li></ul><p>注：value表示代金券上的金额，锁定脚本即代金券的使用规则，满足了才可以用。</p><h3 id="3-交易输入结构">3. 交易输入结构</h3><p>定义TXInput结构体，内部有：</p><ul><li>TXid（代金券编号）</li><li>Vout（输出索引）</li><li>ScriptSip（解锁脚本）</li></ul><p>注：</p><ul><li>Vout是用来告诉系统上次交易的使用输出，也是告诉商店要用哪张代金券（本次输入）</li><li>本次输入是之前的输出，除了新块，否则都要引用之前的输出，故其实没有被引用的输出就是余额</li></ul><h2 id="功能实现">功能实现</h2><h3 id="4-创世交易">4. 创世交易</h3><p>定义创世区块的TX函数，这个没有前vin，只有输出，也没有解锁脚本（为空）。</p><h3 id="5-区块结构修改">5. 区块结构修改</h3><p>修改block结构体的成员，把data换成Transactions函数。</p><h3 id="6-代码适配">6. 代码适配</h3><p>把之前一切关于data的代码进行修改换成transaction，同时修改创建区块链的函数，这个函数会接收一个address给创世矿工，且之前的工作量证明需要把data换成TX。</p><h3 id="7-余额查询基础">7. 余额查询基础</h3><p>定义能否解锁和锁定输入输出的函数（这里只是简单查询一下是否是自己的密钥）。</p><h3 id="8-未花费输出查询">8. 未花费输出查询</h3><p>定义FindUnspentTransactions函数，创建哈希表存储所有已花费的输出（就是每个后vin对应的前vout），那些没有后面vin的vout就是余额。</p><h3 id="9-余额计算">9. 余额计算</h3><p>定义getbalance函数，用于把Find函数找出来的UTXOs（未交易输出）合并起来算除余额。</p><h3 id="10-交易生成">10. 交易生成</h3><p>定义NewUTXOTransaction用于生成交易信息。</p><h3 id="11-可用输出查询">11. 可用输出查询</h3><p>定义FindSpendableOutputs，找到未花费的金额，并且确保金额足够。</p><h3 id="12-转账功能">12. 转账功能</h3><p>定义send函数用于发送币。</p>]]></content>
-    
-    
-    <summary type="html">区块链系统中交易机制的详细实现方案</summary>
-    
-    
-    
-    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
     
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
