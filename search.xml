@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>进阶动态规划</title>
+      <link href="/posts/leetcode-advanced-dp.html"/>
+      <url>/posts/leetcode-advanced-dp.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="遍历一组集合-一组前面的数来执行状态转移"><a href="#遍历一组集合-一组前面的数来执行状态转移" class="headerlink" title="遍历一组集合/一组前面的数来执行状态转移"></a>遍历一组集合/一组前面的数来执行状态转移</h2><h3 id="279-完全平方数"><a href="#279-完全平方数" class="headerlink" title="279.完全平方数"></a>279.完全平方数</h3><p><img src="https://cdn-a.markji.com/files/683c74801a5e20b2c6a95222_hd.png?e=1748795237969&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:1UV-_6lXXx0rPLGw60rpue9nfIY=" alt=""></p><p>感觉这题本质上是经典的考状态转移方程,遍历所有完全平方数,自身i就是num[i-j*j]+1的最小值ps:j要枚举所有完全平方数(满足条件,不能太大)</p><p>注意这里是要j*j&lt;=i的,不然当就是完全平方数的情况下,minNum没有被修改导致vec[i]=100000了,或者应该要在vec[i]=minNum之前判断一下minNum是否被修改了,即minNum!=100000才允许赋值</p><p>这个和下面两题的思想很接近,就是给一个集合(完全平方数集合,零钱集合,字典集合),都是按顺序填充状态数组,然后每次都需要遍历一遍集合</p><h3 id="139-单词拆分"><a href="#139-单词拆分" class="headerlink" title="139.单词拆分"></a>139.单词拆分</h3><p><img src="https://cdn-a.markji.com/files/683c758134e5bdcd235c2166_hd.png?e=1748795297618&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:9m6zgKIFpYftCQbrMfERqVmuMOs=" alt=""><br><img src="https://cdn-a.markji.com/files/683c75861a5e20b2c6a96c73_hd.png?e=1748795302210&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Mm3GMoctJuGpWF9cIPARehyy2xQ=" alt=""></p><p>这题和上面两题的相同处是都需要状态容器然后从头开始遍历,并且每次都需要遍历字典/完全平方数/零钱面额的集合,但是不同处是这边只需要true和false,故不需要用一个int来选取最小值</p><h3 id="416-分割等和子集"><a href="#416-分割等和子集" class="headerlink" title="416.分割等和子集"></a>416.分割等和子集</h3><p><img src="https://cdn-a.markji.com/files/683c754434e5bdcd235c1bee_hd.png?e=1748795237969&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:0mJOzF0801W770WTgmUiHeT7QkU=" alt=""></p><p>我一开始觉得这题和39.组合总和(回溯)很像,因为组合总和是找到某种子集组合为target,并且可以重复选,那这题本质上就是找到不重复子集总和为sum(全部值)/2即可</p><p>这边只要改成选和不选都+1即可,但是这样做发现报错超时(本质上是暴力枚举)</p><p>故这题要引入动态规划来优化时间</p><p>使用动态规划来优化,创建一个nums.size()+1×target/2+1大小的二维数组,vec[n][t]表示前n个元素能不能找到总和为t的子集,最终答案就是vec[num.size()][target/2]是否为1</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基础动态规划</title>
       <link href="/posts/leetcode-basic-dp.html"/>
       <url>/posts/leetcode-basic-dp.html</url>

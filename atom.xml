@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-06-01T02:00:00.000Z</updated>
+  <updated>2025-06-01T15:45:53.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>进阶动态规划</title>
+    <link href="https://www.magicat.cc/posts/leetcode-advanced-dp.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-advanced-dp.html</id>
+    <published>2025-06-01T15:45:53.000Z</published>
+    <updated>2025-06-01T15:45:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="遍历一组集合-一组前面的数来执行状态转移"><a href="#遍历一组集合-一组前面的数来执行状态转移" class="headerlink" title="遍历一组集合/一组前面的数来执行状态转移"></a>遍历一组集合/一组前面的数来执行状态转移</h2><h3 id="279-完全平方数"><a href="#279-完全平方数" class="headerlink" title="279.完全平方数"></a>279.完全平方数</h3><p><img src="https://cdn-a.markji.com/files/683c74801a5e20b2c6a95222_hd.png?e=1748795237969&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:1UV-_6lXXx0rPLGw60rpue9nfIY=" alt=""></p><p>感觉这题本质上是经典的考状态转移方程,遍历所有完全平方数,自身i就是num[i-j*j]+1的最小值ps:j要枚举所有完全平方数(满足条件,不能太大)</p><p>注意这里是要j*j&lt;=i的,不然当就是完全平方数的情况下,minNum没有被修改导致vec[i]=100000了,或者应该要在vec[i]=minNum之前判断一下minNum是否被修改了,即minNum!=100000才允许赋值</p><p>这个和下面两题的思想很接近,就是给一个集合(完全平方数集合,零钱集合,字典集合),都是按顺序填充状态数组,然后每次都需要遍历一遍集合</p><h3 id="139-单词拆分"><a href="#139-单词拆分" class="headerlink" title="139.单词拆分"></a>139.单词拆分</h3><p><img src="https://cdn-a.markji.com/files/683c758134e5bdcd235c2166_hd.png?e=1748795297618&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:9m6zgKIFpYftCQbrMfERqVmuMOs=" alt=""><br><img src="https://cdn-a.markji.com/files/683c75861a5e20b2c6a96c73_hd.png?e=1748795302210&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Mm3GMoctJuGpWF9cIPARehyy2xQ=" alt=""></p><p>这题和上面两题的相同处是都需要状态容器然后从头开始遍历,并且每次都需要遍历字典/完全平方数/零钱面额的集合,但是不同处是这边只需要true和false,故不需要用一个int来选取最小值</p><h3 id="416-分割等和子集"><a href="#416-分割等和子集" class="headerlink" title="416.分割等和子集"></a>416.分割等和子集</h3><p><img src="https://cdn-a.markji.com/files/683c754434e5bdcd235c1bee_hd.png?e=1748795237969&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:0mJOzF0801W770WTgmUiHeT7QkU=" alt=""></p><p>我一开始觉得这题和39.组合总和(回溯)很像,因为组合总和是找到某种子集组合为target,并且可以重复选,那这题本质上就是找到不重复子集总和为sum(全部值)/2即可</p><p>这边只要改成选和不选都+1即可,但是这样做发现报错超时(本质上是暴力枚举)</p><p>故这题要引入动态规划来优化时间</p><p>使用动态规划来优化,创建一个nums.size()+1×target/2+1大小的二维数组,vec[n][t]表示前n个元素能不能找到总和为t的子集,最终答案就是vec[num.size()][target/2]是否为1</p>]]></content>
+    
+    
+    <summary type="html">完全平方数&amp;单词拆分&amp;分割等和子集</summary>
+    
+    
+    
+    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
+    
+    <category term="动态规划" scheme="https://www.magicat.cc/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
   
   <entry>
     <title>基础动态规划</title>
@@ -480,31 +505,6 @@
     <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
     
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="密码学" scheme="https://www.magicat.cc/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>比特币加密算法</title>
-    <link href="https://www.magicat.cc/posts/bitcoin-encryption.html"/>
-    <id>https://www.magicat.cc/posts/bitcoin-encryption.html</id>
-    <published>2025-04-29T15:48:50.000Z</published>
-    <updated>2025-04-29T15:48:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="身份标识">身份标识</h2><p>在比特币中，身份本质上是一对公钥和私钥。</p><p>但是公钥和私钥本质上只是随机字符序列，人类无法肉眼读取，使用Base58编码转换，同时可以解码回去。</p><h2 id="数字签名">数字签名</h2><p>使用数字签名保证：</p><ul><li>数据传输过程中不被修改</li><li>数据的发送方可以被确定</li><li>发送方无法否认发送过的事实</li></ul><h2 id="密钥生成">密钥生成</h2><h3 id="私钥生成">私钥生成</h3><p>比特币使用椭圆曲线生成私钥，随机选取在 0 与 2^2^56中的数，略小于可观测宇宙原子数。</p><h3 id="公钥生成">公钥生成</h3><p>公钥本质上是私钥在椭圆上的x轴和y轴相加。</p><h2 id="ECDSA签名">ECDSA签名</h2><p>比特币使用ECDSA对数据进行签名。</p><p>签名需要：</p><ul><li>待签名数据</li><li>私钥</li></ul><p>验证需要：</p><ul><li>被签名数据</li><li>公钥</li><li>签名</li></ul><h2 id="交易验证">交易验证</h2><p>当一个人发送币的时候，要在input中带上：</p><ul><li>自己的公钥（用于匹配utxo）</li><li>整个交易的一个签名（由自己创建）</li></ul><p>比特币网络其他节点也会检查：</p><ul><li>这个公钥是否引用合法</li><li>签名是否可以用这个人的公钥验证</li></ul><h2 id="地址生成">地址生成</h2><p>经历一系列的算法后可以生成一个地址。</p><p>这个为真实的地址，甚至可以在https://blockchain.info/ 查询余额，只是余额为0而已。</p>]]></content>
-    
-    
-    <summary type="html">比特币系统中的加密机制、数字签名及地址生成原理</summary>
-    
-    
-    
-    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="比特币" scheme="https://www.magicat.cc/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
     
     <category term="密码学" scheme="https://www.magicat.cc/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     

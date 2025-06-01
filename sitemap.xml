@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://www.magicat.cc/posts/leetcode-advanced-dp.html</loc>
+    
+    <lastmod>2025-06-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.magicat.cc/posts/leetcode-basic-dp.html</loc>
     
     <lastmod>2025-06-01</lastmod>
