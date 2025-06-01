@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-05-31T15:52:42.000Z</updated>
+  <updated>2025-06-01T02:00:00.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基础动态规划</title>
+    <link href="https://www.magicat.cc/posts/leetcode-basic-dp.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-basic-dp.html</id>
+    <published>2025-06-01T02:00:00.000Z</published>
+    <updated>2025-06-01T02:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="动态规划">动态规划</h2><p>根据前面一个来执行状态转移</p><h3 id="70-爬楼梯">70.爬楼梯</h3><p><img src="https://cdn-a.markji.com/files/683c73421a5e20b2c6a93cd8_hd.png?e=1748794722307&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:zgGAXkl5chISD5c6dVDKs3B2yZk=" alt=""></p><h3 id="118-杨辉三角">118.杨辉三角</h3><p><img src="https://cdn-a.markji.com/files/683c73491a5e20b2c6a93d4f_hd.png?e=1748794729661&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:2Bb4jkcTFIfGRPVO3osb6yj3wAg=" alt=""><br>本质上是数学规律,要注意先初始化周围一圈,然后从中间开始遍历,当前i是由上一层的i-1和i加起来的</p><h3 id="198-打家劫舍">198.打家劫舍</h3><p><img src="https://cdn-a.markji.com/files/683c73511a5e20b2c6a93dee_hd.png?e=1748794737757&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:GuuCfSweRw3Xg4SMBRLkrmudzL4=" alt=""></p>]]></content>
+    
+    
+    <summary type="html">爬楼梯&amp;杨辉三角&amp;打家劫舍</summary>
+    
+    
+    
+    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
+    
+    <category term="动态规划" scheme="https://www.magicat.cc/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
   
   <entry>
     <title>岛屿数量</title>
@@ -482,29 +507,6 @@
     <category term="比特币" scheme="https://www.magicat.cc/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
     
     <category term="密码学" scheme="https://www.magicat.cc/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链余额查询流程</title>
-    <link href="https://www.magicat.cc/posts/blockchain-balance-query.html"/>
-    <id>https://www.magicat.cc/posts/blockchain-balance-query.html</id>
-    <published>2025-04-28T14:59:13.000Z</published>
-    <updated>2025-04-28T14:59:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="初始化阶段">初始化阶段</h2><p>创建一个空的 unspentTXs 切片，用来存储所有未花费的交易。</p><p>创建一个空的 spentTXOs 映射，存储已花费的交易输出（以 txID 和输出索引的方式标记已花费的输出）。</p><h2 id="迭代器获取">迭代器获取</h2><p>获取区块链的迭代器：<br>调用 bc.Iterator() 获取一个迭代器 bci，用于遍历区块链中的每一个区块。</p><h2 id="区块遍历过程">区块遍历过程</h2><h3 id="区块获取">区块获取</h3><p>使用 bci.Next() 获取下一个区块 block。</p><p>如果区块的 PrevBlockHash 长度为零，表示遍历到了区块链的头部，停止遍历。</p><h3 id="交易遍历">交易遍历</h3><p>对每个区块中的所有交易（block.Transactions），执行以下步骤：</p><ol><li>获取交易的 txID，并将其转为十六进制字符串。</li></ol><h3 id="输出检查">输出检查</h3><p>对当前交易的每个输出（tx.Vout），执行以下步骤：</p><ol><li>如果该输出已经在 spentTXOs 中标记为已花费，跳过该输出（继续检查下一个输出）</li><li>检查当前输出是否能被 address 解锁（out.CanBeUnlockedWith(address)）</li><li>如果可以解锁，则将当前交易添加到 unspentTXs 中</li></ol><h3 id="输入处理">输入处理</h3><p>如果当前交易不是一个 coinbase 交易（即它不是系统奖励的交易），则继续遍历交易的输入（tx.Vin）。</p><p>对每个输入，检查其是否能用 address 解锁（in.CanUnlockOutputWith(address)）：</p><ul><li>如果能解锁，说明该输入花费了某个输出</li><li>根据输入的 Txid 和 Vout，标记该输出为已花费，添加到 spentTXOs 中</li></ul><h2 id="遍历终止">遍历终止</h2><p>重复上述步骤直到遍历所有区块：<br>如果区块的 PrevBlockHash 长度为零，说明已经遍历到链头，退出遍历。</p><h2 id="结果返回">结果返回</h2><p>返回 unspentTXs，其中包含了所有与特定地址相关且未被花费的交易。<br><img src="https://cdn-a.markji.com/files/6809e95d6092fd692c50f89a_hd.png?e=1745854305346&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:FKD3hsV1Cpif-krQweT7KM0gP_w=" alt=""></p>]]></content>
-    
-    
-    <summary type="html">详细解析区块链系统中查询余额的具体实现流程</summary>
-    
-    
-    
-    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="比特币" scheme="https://www.magicat.cc/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
     
   </entry>
   

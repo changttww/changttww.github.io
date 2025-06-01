@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>基础动态规划</title>
+      <link href="/posts/leetcode-basic-dp.html"/>
+      <url>/posts/leetcode-basic-dp.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="动态规划">动态规划</h2><p>根据前面一个来执行状态转移</p><h3 id="70-爬楼梯">70.爬楼梯</h3><p><img src="https://cdn-a.markji.com/files/683c73421a5e20b2c6a93cd8_hd.png?e=1748794722307&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:zgGAXkl5chISD5c6dVDKs3B2yZk=" alt=""></p><h3 id="118-杨辉三角">118.杨辉三角</h3><p><img src="https://cdn-a.markji.com/files/683c73491a5e20b2c6a93d4f_hd.png?e=1748794729661&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:2Bb4jkcTFIfGRPVO3osb6yj3wAg=" alt=""><br>本质上是数学规律,要注意先初始化周围一圈,然后从中间开始遍历,当前i是由上一层的i-1和i加起来的</p><h3 id="198-打家劫舍">198.打家劫舍</h3><p><img src="https://cdn-a.markji.com/files/683c73511a5e20b2c6a93dee_hd.png?e=1748794737757&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:GuuCfSweRw3Xg4SMBRLkrmudzL4=" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>岛屿数量</title>
       <link href="/posts/leetcode-number-of-islands.html"/>
       <url>/posts/leetcode-number-of-islands.html</url>
