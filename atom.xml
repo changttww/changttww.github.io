@@ -288,41 +288,16 @@
   </entry>
   
   <entry>
-    <title>反转链表</title>
-    <link href="https://www.magicat.cc/posts/leetcode-reverse-linked-list.html"/>
-    <id>https://www.magicat.cc/posts/leetcode-reverse-linked-list.html</id>
+    <title>基础链表</title>
+    <link href="https://www.magicat.cc/posts/leetcode-linked-list-problems.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-linked-list-problems.html</id>
     <published>2025-05-20T14:50:37.000Z</published>
     <updated>2025-05-20T14:50:37.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/682ca1c61a5e20b2c67db51d_hd.png?e=1747758054690&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:5ntoiktP1anoxMcdE7xms180weI=" alt=""></p><p>注意这题是要返回反转后的链表头</p><h2 id="递归解法"><a href="#递归解法" class="headerlink" title="递归解法"></a>递归解法</h2><p>```cpp<br>class Solution {<br>public:<br>    ListNode<em> reverseList(ListNode</em> head) {<br>        if(!head||!head-&gt;next)return head;<br>        auto ret=reverseList(head-&gt;next);<br>        head-&gt;next-&gt;next=head;<br>        head-&gt;next =nullptr;//记得这里要切断指向,不然会相互指着,形成环<br>        return ret;<br>    }<br>};//就是本质上是要处理尾节点的指向要指向空,同时为了处理传进来是空的情况,一开始要同时判断!head才可以</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="相交链表">相交链表</h2><p><img src="https://cdn-a.markji.com/files/682ca1551a5e20b2c67dab55_hd.png?e=1747757941825&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7_sxcdj8TmQcjyLdtrZnXlE29nE=" alt=""></p><p>ps:因为可能会存在没有相交的点,所以一直往前走,然后回到开头继续的方法会导致死循环(如果一定有焦点是可以的)</p><p>方法1.使用哈希表/集合,先遍历一个链表,把节点存进去,然后遍历另外一个链表查看是否在哈希表中已经存放过了</p><p>方法2.使用栈,先开两个栈,然后遍历一遍把两个链表分别放进栈里,然后一个一个pop找到最后一个还是一样的节点</p><h2 id="反转链表">反转链表</h2><p><img src="https://cdn-a.markji.com/files/682ca1c61a5e20b2c67db51d_hd.png?e=1747758054690&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:5ntoiktP1anoxMcdE7xms180weI=" alt=""></p><p>注意这题是要返回反转后的链表头</p><h3 id="递归解法">递归解法</h3><pre><code class="language-cpp">class Solution &#123;public:    ListNode* reverseList(ListNode* head) &#123;        if(!head||!head-&gt;next)return head;        auto ret=reverseList(head-&gt;next);        head-&gt;next-&gt;next=head;        head-&gt;next =nullptr;//记得这里要切断指向,不然会相互指着,形成环        return ret;    &#125;&#125;;//就是本质上是要处理尾节点的指向要指向空,同时为了处理传进来是空的情况,一开始要同时判断!head才可以</code></pre>]]></content>
     
     
-    <summary type="html">LeetCode Hot100 反转链表的递归和迭代解法</summary>
-    
-    
-    
-    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
-    
-    <category term="链表" scheme="https://www.magicat.cc/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>相交链表</title>
-    <link href="https://www.magicat.cc/posts/leetcode-intersection-of-two-linked-lists.html"/>
-    <id>https://www.magicat.cc/posts/leetcode-intersection-of-two-linked-lists.html</id>
-    <published>2025-05-19T14:45:37.000Z</published>
-    <updated>2025-05-19T14:45:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://cdn-a.markji.com/files/682ca1551a5e20b2c67dab55_hd.png?e=1747757941825&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:7_sxcdj8TmQcjyLdtrZnXlE29nE=" alt=""></p><p>ps:因为可能会存在没有相交的点,所以一直往前走,然后回到开头继续的方法会导致死循环(如果一定有焦点是可以的)</p><p>方法1.使用哈希表/集合,先遍历一个链表,把节点存进去,然后遍历另外一个链表查看是否在哈希表中已经存放过了</p><p>方法2.使用栈,先开两个栈,然后遍历一遍把两个链表分别放进栈里,然后一个一个pop找到最后一个还是一样的节点</p>]]></content>
-    
-    
-    <summary type="html">LeetCode Hot100 相交链表的解题思路</summary>
+    <summary type="html">相交链表&amp;反转链表</summary>
     
     
     
@@ -507,6 +482,31 @@
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
     <category term="P2P网络" scheme="https://www.magicat.cc/tags/P2P%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>区块链核心代码4</title>
+    <link href="https://www.magicat.cc/posts/blockchain-wallet.html"/>
+    <id>https://www.magicat.cc/posts/blockchain-wallet.html</id>
+    <published>2025-04-29T15:50:37.000Z</published>
+    <updated>2025-04-29T15:50:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="钱包基础结构">钱包基础结构</h2><h3 id="1-钱包结构体">1. 钱包结构体</h3><p>新建钱包结构体，里面有：</p><ul><li>公私钥对</li><li>构造函数</li><li>辅助函数</li></ul><h3 id="2-地址生成">2. 地址生成</h3><p>给钱包增加getAddress成员函数，执行以下步骤：</p><ol><li>对公钥执行哈希</li><li>对①结果加上版本信息</li><li>对②结果哈希两次</li><li>拼接②结果和③结果</li><li>对④结果执行Base56算法</li></ol><h2 id="交易结构优化">交易结构优化</h2><h3 id="3-交易结构修改">3. 交易结构修改</h3><ul><li>input中加入自身公钥和签名</li><li>output还是放value和公钥</li></ul><h2 id="安全机制">安全机制</h2><h3 id="4-鉴权系统">4. 鉴权系统</h3><p>提供一系列鉴权函数，检验公钥是否合法。</p><h3 id="5-签名系统">5. 签名系统</h3><p>提供签名和验证签名的函数：</p><ul><li>对自身公钥所引用的输出的公钥(UTXO)和value执行签名</li><li>修改unspendutxo函数，把鉴权逻辑改成使用签名</li></ul>]]></content>
+    
+    
+    <summary type="html">区块链系统中钱包结构及其加密验证机制的实现</summary>
+    
+    
+    
+    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
+    
+    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    <category term="密码学" scheme="https://www.magicat.cc/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
