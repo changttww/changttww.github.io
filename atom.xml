@@ -6,7 +6,7 @@
   <link href="https://www.magicat.cc/atom.xml" rel="self"/>
   
   <link href="https://www.magicat.cc/"/>
-  <updated>2025-06-01T15:45:53.000Z</updated>
+  <updated>2025-06-02T15:45:49.000Z</updated>
   <id>https://www.magicat.cc/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>贪心算法</title>
+    <link href="https://www.magicat.cc/posts/leetcode-greedy.html"/>
+    <id>https://www.magicat.cc/posts/leetcode-greedy.html</id>
+    <published>2025-06-02T15:45:49.000Z</published>
+    <updated>2025-06-02T15:45:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><p>核心就是寻找局部最优解</p><h3 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121.买卖股票的最佳时机"></a>121.买卖股票的最佳时机</h3><p><img src="https://cdn-a.markji.com/files/683dc7d734e5bdcd2375e27f_hd.png?e=1748881912195&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:3l74Aasb_tba8LowIttOoWDfNVU=" alt=""></p><p>本质上就是记录一下当前已经遍历过的最小值,然后和当前的值相减的同时维护一个ret即可,即扫一遍,每次维护前者最小值,然后和当前的扫描值计算算出最大值<br><img src="https://cdn-a.markji.com/files/683dc7da1a5e20b2c6c3c011_hd.png?e=1748881914307&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Axv37D8jn9pF4hzhmChcIF_qYrI=" alt=""></p><p>贪心:当前的最大利润就是之前的minNum</p><h3 id="55-跳跃游戏"><a href="#55-跳跃游戏" class="headerlink" title="55.跳跃游戏"></a>55.跳跃游戏</h3><p><img src="https://cdn-a.markji.com/files/683dc7f61a5e20b2c6c3c1fe_hd.png?e=1748881942416&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:Brijk_cG86WSCxDrca6sps1jXx0=" alt=""><br>贪心,维护当前能跳到的最远距离即可,遍历的过程中不断延申长度</p><h3 id="45-跳跃游戏Ⅱ"><a href="#45-跳跃游戏Ⅱ" class="headerlink" title="45.跳跃游戏Ⅱ"></a>45.跳跃游戏Ⅱ</h3><p><img src="https://cdn-a.markji.com/files/683dc7fc1a5e20b2c6c3c252_hd.png?e=1748881948752&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:AVYrb8Ynv_uNzCFs7Op7nPx7gJg=" alt=""><br>这题和上题的区别就是这题不仅仅是需要计算能否到达,还需要记录需要几步,所以我的想法是维护一个次数数组,类似dp,遍历的时候同时更新nums[]所能到达地方的次数,但是这个复杂度是n方,有个n的复杂度暂时略<br><img src="https://cdn-a.markji.com/files/683dc80134e5bdcd2375e944_hd.png?e=1748881954240&amp;token=xX63b9jqTlDOcGmctt5K9254rV0LG8hS9BmDeFBy:cN5Xd1z6yU3WisZ6nhUI32xyOOk=" alt=""></p>]]></content>
+    
+    
+    <summary type="html">贪心算法经典题目解析与思路分析</summary>
+    
+    
+    
+    <category term="算法题解" scheme="https://www.magicat.cc/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://www.magicat.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="LeetCode" scheme="https://www.magicat.cc/tags/LeetCode/"/>
+    
+    <category term="贪心" scheme="https://www.magicat.cc/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+  </entry>
   
   <entry>
     <title>进阶动态规划</title>
@@ -482,31 +507,6 @@
     <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
     <category term="P2P网络" scheme="https://www.magicat.cc/tags/P2P%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链核心代码4</title>
-    <link href="https://www.magicat.cc/posts/blockchain-wallet.html"/>
-    <id>https://www.magicat.cc/posts/blockchain-wallet.html</id>
-    <published>2025-04-29T15:50:37.000Z</published>
-    <updated>2025-04-29T15:50:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="钱包基础结构">钱包基础结构</h2><h3 id="1-钱包结构体">1. 钱包结构体</h3><p>新建钱包结构体，里面有：</p><ul><li>公私钥对</li><li>构造函数</li><li>辅助函数</li></ul><h3 id="2-地址生成">2. 地址生成</h3><p>给钱包增加getAddress成员函数，执行以下步骤：</p><ol><li>对公钥执行哈希</li><li>对①结果加上版本信息</li><li>对②结果哈希两次</li><li>拼接②结果和③结果</li><li>对④结果执行Base56算法</li></ol><h2 id="交易结构优化">交易结构优化</h2><h3 id="3-交易结构修改">3. 交易结构修改</h3><ul><li>input中加入自身公钥和签名</li><li>output还是放value和公钥</li></ul><h2 id="安全机制">安全机制</h2><h3 id="4-鉴权系统">4. 鉴权系统</h3><p>提供一系列鉴权函数，检验公钥是否合法。</p><h3 id="5-签名系统">5. 签名系统</h3><p>提供签名和验证签名的函数：</p><ul><li>对自身公钥所引用的输出的公钥(UTXO)和value执行签名</li><li>修改unspendutxo函数，把鉴权逻辑改成使用签名</li></ul>]]></content>
-    
-    
-    <summary type="html">区块链系统中钱包结构及其加密验证机制的实现</summary>
-    
-    
-    
-    <category term="区块链技术" scheme="https://www.magicat.cc/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="C++" scheme="https://www.magicat.cc/tags/C/"/>
-    
-    <category term="区块链" scheme="https://www.magicat.cc/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="密码学" scheme="https://www.magicat.cc/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
